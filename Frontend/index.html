@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERS Home</title>
+
+    <link rel="stylesheet" href="../CSS/index.css">
+</head>
+<body>
+        <div class="flexbox-container">
+            <div class="flexbox-item">
+                <div class="info">
+
+                    <div class="title">
+                        <h1>Expense Reimbursement System</h1>
+                    </div>
+
+                    <div class="login-info">
+                      <div class="labels">
+                        <label for="username">Username:</label>
+                        <br><br>
+                        <label for="password">Password:</label>
+                      </div>
+                      <div class="inputs">
+                        <input id="username-input" type="text"/>
+                        <br><br>
+                        <input id="password-input" type="password">
+                        <br>
+                        <!-- password visibility -->
+                        <input type="checkbox" onclick="passFunction()">Show Password
+                        <script>
+                            // password visibility
+                            function passFunction() {
+                                var passwordInput = document.getElementById('password-input');
+                                if (passwordInput.type === "password") {
+                                    passwordInput.type = "text";
+                                } else {
+                                    passwordInput.type = "password";
+                                }
+                            } 
+                        </script>
+                      </div>
+                    </div>
+                    
+                      <div class="bottom">
+                        <div class="errorMessage">
+                          <div id="errorMessage"></div>
+                        </div>
+                        <div class="button">
+                          <button id="login-btn">Sign in</button>
+                        </div>
+                        <div class="signUp">
+                          <a href="/HTML/signUp.html">Sign up</a>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+            </div>
+        </div>
+
+        <script src="/JavaScript/index.js"></script>
+</body>
+</html>

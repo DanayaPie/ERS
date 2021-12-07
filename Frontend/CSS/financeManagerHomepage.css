@@ -1,0 +1,163 @@
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#img {
+  color: white;
+}
+
+/* ---------------------------- */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: 100%;
+
+  background-image: url("/images/finance1.jpg");
+  background-color: blue;
+  background-size: cover;
+  opacity: 80%;
+}
+
+.content-container > * {
+  padding: 0;
+  margin: 0;
+}
+
+.content-container {
+  display: flex;
+  width: max-content;
+
+  align-items: center;
+  flex-direction: column;
+
+  border-radius: 25px;
+  border: 20px solid white;
+  background-color: white;
+  opacity: 100%;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+}
+
+.content-filterStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  border-radius: 25px;
+  background-color: rgb(203, 217, 255);
+  border: 15px solid rgb(203, 217, 255);
+}
+
+.status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  border-radius: 25px;
+  background-color: rgb(203, 217, 255);
+  border: 20px solid rgb(203, 217, 255);
+}
+
+.row-container {
+  display: flex;
+  margin: 2px;
+  align-content: stretch;
+  flex-direction: row;
+  flex-flow: wrap;
+  align-items: center;
+}
+
+label {
+  text-align: center;
+}
+
+.stretch {
+  flex: 1;
+}
+
+.reimbTable {
+  background-color: rgb(203, 217, 255);
+  border-radius: 25px;
+  border: 20px solid rgb(203, 217, 255);
+  flex: 3;
+  width: max-content;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  border: solid;
+  border-width: 2px 2px;
+  padding: 3px;
+}
+
+tr {
+  border: solid;
+  border-width: 1px 0;
+}
+
+td {
+  border: solid;
+  border-width: 1px 1px;
+  padding: 3px;
+}
+
+.center-btn {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}

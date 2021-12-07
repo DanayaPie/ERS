@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+
+    <link rel="stylesheet" href="../CSS/employeeHomepage.css">
+</head>
+<body>
+    <!-- Pop up image -->
+    <div id="receipt-image-modal" class="modal">
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+      
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img">
+    </div>
+
+
+    <div class="page-container">
+        <div class="content-container">
+            <div class="heading">
+                <h1>Welcome to Employee Homepage</h1>
+                <div class="center-btn">
+                    <button id="logout-btn">Sign out</button>
+                </div>
+            </div>
+
+            <div class="content-box">
+
+                <div class="reimbTable">
+                    <!-- reimbursement table -->
+                    <h2>Reimbursements Table</h2>
+                    <table id="reimbursements-table">
+                        <thead>
+                            <tr>
+                                <th>Reimbursement ID</th>
+                                <th>Amount ($)</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Receipt Image</th>
+                                <th>Status</th>
+                                <th>Submitted Time</th>
+                                <th>Resolved Time</th>
+                                <th>Author ID</th>
+                                <th>Resolver ID</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- submit reimbursement -->
+                <div class="content-newReimb">
+                    
+                    <div class="heading">
+                        <h2>Submit New Reimbursement</h2>
+                    </div>
+                        
+                    <div class="row-container">
+                        <label for="amount" class="stretch">Amount:</label>
+                        <input type="number" class="stretch" id="amount"/>
+                    </div>
+
+                    <div class="row-container">
+                        <label for="type" class="stretch">Type:</label>
+                        <select id="type-dropdown" class="stretch">
+                            <option value=" "> </option>
+                            <option value="Food">Food</option>
+                            <option value="Lodging">Lodging</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <script>
+                            function getOption(selectType) {
+                                let value = selectType.value;
+                            }
+                        </script>
+                    </div>
+
+                    <div class="row-container">
+                        <label for="description" class="stretch">Description:</label>
+                        <input type="text" id="description" class="stretch"/>
+                    </div>
+
+                    <div class="row-container">
+                        <label for="receipt" class="stretch">Receipt Upload <br> (JPEG, PNG or GIF):</label>
+                        <input type="file" id="receipt-file" class="stretch"/>
+                    </div>
+
+                    <div class="row-container">
+                        <div class="errorMessage"></div>
+                    </div>
+
+                    <div class="center-btn">
+                        <button id="submit-reimbursement-btn">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    <script src="../JavaScript/emplyeeHomepage.js"></script>
+</body>
+</html>

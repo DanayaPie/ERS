@@ -1,0 +1,91 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: 100%;
+
+  background-image: url("/images/money.jpg");
+  background-color: black;
+  background-size: cover;
+  opacity: 80%;
+}
+
+.content-container > * {
+  padding: 0;
+  margin: 0;
+}
+
+.content-container {
+  display: flex;
+  width: max-content;
+
+  align-items: center;
+  flex-direction: column;
+
+  border-radius: 25px;
+  border: 20px solid white;
+  background-color: white;
+  opacity: 100%;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+}
+
+.content-filterStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  border-radius: 25px;
+  background-color: rgb(255, 235, 193);
+  border: 20px solid rgb(255, 235, 193);
+}
+
+.reimbTable {
+  background-color: rgb(255, 235, 193);
+  border-radius: 25px;
+  border: 20px solid rgb(255, 235, 193);
+  flex: 3;
+  width: max-content;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  border: solid;
+  border-width: 2px 2px;
+  padding: 3px;
+}
+
+tr {
+  border: solid;
+  border-width: 1px 0;
+}
+
+td {
+  border: solid;
+  border-width: 1px 1px;
+  padding: 3px;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="../CSS/employeeHomepage.css">
+</head>
+<body>
+    <div id="receipt-image-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content"></div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div class="flexbox-container">
+        <div class="flexbox-item">
+
+            <div class="title">
+                <h1>Welcome to Employee homepage</h1>
+                <button id="logout-btn">Sign out</button>
+            </div>
+
+            <div class="flexbox-item flexbox-item-1">
+            <!-- reimbursement table -->
+                <div class="info">
+                    <div class="tableInfo">
+                        <div class="tableTitle">
+                            <h2>Reimbursements Table</h2>
+                        </div>
+                        <div class="table">
+                            <table id="reimbursements-table">
+                                <thead>
+                                    <tr>
+                                        <th>Reimbursement ID</th>
+                                        <th>Amount ($)</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Receipt Image</th>
+                                        <th>Status</th>
+                                        <th>Submitted Time</th>
+                                        <th>Resolved Time</th>
+                                        <th>Author ID</th>
+                                        <th>Resolver ID</th>
+                                    </tr>
+                                </thead>
+                
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flexbox-item flexbox-item-2">
+            <!-- submit reimbursement -->
+                <div class="newReimb">
+                    <div class="newReimbTitle">
+                        <h2>Submit New Reimbursement</h2>
+                    </div>
+
+                    <div class="amount">
+                        <div class="amountLabel">
+                            <label for="amount">Amount:</label>
+                        </div>
+                        <div class="amountInput">
+                            <input type="number" id="amount"/>
+                        </div>
+                    </div>
+
+                    <div class="type">
+                        <div class="typeLabel">
+                            <label for="type">Type:</label>
+                        </div>
+                        <div class="typeInput">
+                            <select id="type-dropdown">
+                                <option value=" "> </option>
+                                <option value="Food">Food</option>
+                                <option value="Lodging">Lodging</option>
+                                <option value="Travel">Travel</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <script>
+                                function getOption(selectType) {
+                                    let value = selectType.value;
+                                    console.log(value);
+                                }
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="description">
+                        <div class="descriptionLabel">
+                            <label for="description">Description:</label>
+                        </div>
+                        <div class="descriptionInput">
+                            <input type="text" id="description"/>
+                        </div>
+                    </div>
+
+                    <div class="receipt">
+                        <div class="receiptLabel">
+                            <label for="receipt">Receipt Upload: </label>
+                            <p>(JPEG, PNG or GIF)</p>
+                        </div>
+                        <div class="receiptInput">
+                            <input type="file" id="receipt-file"/>
+                        </div>
+                    </div>
+
+                    <div id="bottom">
+                        <div class="errorMessage"></div>
+                    </div>
+                        <div class="button">
+                            <button id="submit-reimbursement-btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../JavaScript/emplyeeHomepage.js"></script>
+</body>
+</html>
