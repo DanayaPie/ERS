@@ -176,8 +176,8 @@ async function populateReimbursementTable() {
                         
                 if (res.status === 200) {
                     populateReimbursementTable(); // refresh table after update
-                } else if (res.status === 400) { // if status code 400 =>
-                    let reimbForm = document.querySelector('#reimbursement-table');
+                } else if (res.status === 401) { // if status code 401 =>
+                    let reimbForm = document.querySelector('.message');
             
                     let data = await res.json();
             

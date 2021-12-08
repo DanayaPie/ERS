@@ -280,4 +280,45 @@ public class ReimbursementDAO {
 		}
 	}
 
+	public InputStream getRecieptByReimbursementId(int reimbId) throws SQLException {
+		logger.info("ReimbursementDAO.getRecieptByReimbursementId() invoked");
+
+		try (Connection con = JDBCUtility.getConnection()) {
+			String sql = "SELECT receipt FROM \"ERS_project\".reimbursement WHERE reimb_id = ? ORDER BY reimb_id;";
+
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reimbId);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				InputStream image = rs.getBinaryStream("receipt");
+
+				return image;
+			}
+		}
+		return null;
+	}
+
+	public void updateReimbursementStatus(int reimbursementId, String status, int userId) throws SQLException {
+		logger.info("ReimbursementDAO.updateReimbursementStatus() invoked");
+
+		try (Connection con = JDBCUtility.getConnection()) {
+			String sql = "UPDATE \"ERS_project\".reimbursement SET status = ?, resolver_id = ?, "
+					+ "resolved_time = CURRENT_TIMESTAMP WHERE reimb_id = ?;";
+
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, status);
+			pstmt.setInt(2, userId);
+			pstmt.setInt(3, reimbursementId);
+
+			int updateCount = pstmt.executeUpdate();
+
+			if (updateCount != 1) {
+				throw new SQLException("Unable to update the status.");
+			}
+		}
+	}
+
+
 }

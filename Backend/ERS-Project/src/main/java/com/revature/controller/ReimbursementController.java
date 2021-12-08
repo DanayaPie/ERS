@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.revature.constant.EndpointConstants;
+import com.revature.dto.UpdateReimbursementStatusDTO;
 import com.revature.model.Reimbursement;
 import com.revature.model.User;
 import com.revature.service.AuthorizationService;
@@ -70,7 +71,7 @@ public class ReimbursementController implements Controller {
 		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
 		this.authService.authorizeFinanceManagerAndEmployee(currentlyLoggedInUser);
 
-		Double amount = Double.parseDouble(ctx.formParam("amount"));
+		String amount = ctx.formParam("amount");
 		
 		String type = ctx.formParam("type");
 		String description = ctx.formParam("description");
@@ -101,56 +102,56 @@ public class ReimbursementController implements Controller {
 		ctx.status(201);
 	};
 
-//	// getRecieptByReimbursementId
-//	private Handler getRecieptByReimbursementId = (ctx) -> {
-//		logger.info("ReimbursementController.getRecieptByReimbursementId() invoked");
-//
-//		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
-//		this.authService.authorizeFinanceManagerAndEmployee(currentlyLoggedInUser);
-//
-//		String reimbursementId = ctx.pathParam("reimbId");
-//
-//		this.reimbService.verifyReimbursement(reimbursementId);
-//
-//		InputStream image = this.reimbService.getRecieptByReimbursementId(currentlyLoggedInUser, reimbursementId);
-//
-//		// tika detect and analyze the content
-//		Tika tika = new Tika();
-//		String mimeType = tika.detect(image);
-//
-//		// specifying the type of content to the client
-//		ctx.contentType(mimeType);
-//
-//		// sending image back to the client
-//		ctx.result(image);
-//	};
-//
-//	// updateReimbursements
-//	private Handler updateReimbursements = (ctx) -> {
-//		logger.info("ReimbursementController.updateReimburseHandler() invoked");
-//
-//		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
-//		this.authService.authorizeFinanceManager(currentlyLoggedInUser);
-//
-//		String reimbursementId = ctx.pathParam("reimbId");
-//
-//		this.reimbService.verifyReimbursement(reimbursementId);
-//
-//		// take the request body and putting the data into a new object
-//		UpdateReimbursementDTO dto = ctx.bodyAsClass(UpdateReimbursementDTO.class);
-//
-//		Reimbursement updateReimbursement = this.reimbService.updateReimbursement(currentlyLoggedInUser,
-//				reimbursementId, dto.getStatus());
-//		ctx.json(updateReimbursement);
-//	};
+	// getRecieptByReimbursementId
+	private Handler getRecieptByReimbursementId = (ctx) -> {
+		logger.info("ReimbursementController.getRecieptByReimbursementId() invoked");
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
+		this.authService.authorizeFinanceManagerAndEmployee(currentlyLoggedInUser);
+
+		String reimbursementId = ctx.pathParam("reimbId");
+
+		this.reimbService.verifyReimbursementByReimbId(reimbursementId);
+
+		InputStream image = this.reimbService.getRecieptImageByReimbId(currentlyLoggedInUser, reimbursementId);
+
+		// tika detect and analyze the content
+		Tika tika = new Tika();
+		String mimeType = tika.detect(image);
+
+		// specifying the type of content to the client
+		ctx.contentType(mimeType);
+
+		// sending image back to the client
+		ctx.result(image);
+	};
+
+	// updateReimbursementStatus
+	private Handler updateReimbursementStatus = (ctx) -> {
+		logger.info("ReimbursementController.updateReimburseHandler() invoked");
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
+		this.authService.authorizeFinanceManager(currentlyLoggedInUser);
+
+		String reimbursementId = ctx.pathParam("reimbId");
+
+		this.reimbService.verifyReimbursementByReimbId(reimbursementId);
+
+		// take the request body and putting the data into a new object
+		UpdateReimbursementStatusDTO dto = ctx.bodyAsClass(UpdateReimbursementStatusDTO.class);
+
+		Reimbursement updateReimbStatus = this.reimbService.updateReimbursementStatus(currentlyLoggedInUser,
+				reimbursementId, dto.getStatus(), dto.getAuthorId());
+		ctx.json(updateReimbStatus);
+	};
 
 	@Override
 	public void mapEndpoints(Javalin app) {
 		app.get(EndpointConstants.GET_REIMBURSEMENTS, getReimbursements);
 		app.get(EndpointConstants.GET_REIMBURSEMENTS_BYSTATUS, getReimbursementsByStatus);
 		app.post(EndpointConstants.POST_REIMBURSEMENTS, addReimbursements);
-//		app.get(EndpointConstants.GET_RECEIPT, getRecieptByReimbursementId);
-//		app.patch(EndpointConstants.PATCH_REIMBURSEMENTS, updateReimbursements);
+		app.get(EndpointConstants.GET_RECEIPT, getRecieptByReimbursementId);
+		app.patch(EndpointConstants.PATCH_REIMBURSEMENTS, updateReimbursementStatus);
 	}
 
 }

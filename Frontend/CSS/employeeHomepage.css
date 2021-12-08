@@ -90,9 +90,10 @@ html {
 }
 
 .reimbTable {
-  background-color: rgb(255, 235, 193);
   border-radius: 25px;
-  border: 20px solid rgb(255, 235, 193);
+  background: linear-gradient(to top, white, rgb(255, 235, 193));
+  padding: 30px;
+
   flex: 3;
   width: max-content;
   text-align: center;
@@ -120,9 +121,6 @@ td {
 }
 
 .newReimb {
-  background-color: rgb(255, 235, 193);
-  border-radius: 25px;
-  border: 20px solid rgb(255, 235, 193);
   flex: 1;
   min-width: 500px;
   text-align: center;
@@ -134,8 +132,8 @@ td {
   align-items: stretch;
 
   border-radius: 25px;
-  background-color: rgb(255, 235, 193);
-  border: 20px solid rgb(255, 235, 193);
+  background: linear-gradient(to bottom, white, rgb(255, 235, 193));
+  padding: 30px;
 }
 
 .row-container {

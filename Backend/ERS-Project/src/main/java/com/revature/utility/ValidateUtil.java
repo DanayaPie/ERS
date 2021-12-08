@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.revature.exception.InvalidParameterException;
+import com.revature.exception.ReimbursementNotFoundException;
+import com.revature.model.Reimbursement;
 import com.revature.model.User;
 import com.revature.service.UserService;
 
@@ -241,16 +243,24 @@ public class ValidateUtil {
 		logger.info("ValidteUtil.verifyAndSetInputSpecificity() invoked");
 
 		// amount
-		Double amountReimb = Double.parseDouble(amount);
-		if (amountReimb == 0 || amountReimb < 0) {
-			throw new InvalidParameterException("Amount cannot be equal or less than 0.");
+		try {
+			
+			Double amountReimb = Double.parseDouble(amount);
+			
+			if (amountReimb == 0 || amountReimb < 0) {
+				throw new InvalidParameterException("Amount cannot be equal to or less than 0.");
+			}
+		} catch (NumberFormatException e) {
+			throw new InvalidParameterException("Amount must be a number.");
 		}
+
 
 		// capitalized type
 		if (type != null) {
 			type = type.substring(0, 1).toUpperCase() + type.substring(1);
 			// validate type
-		} else if (type == null || !reimbType.contains(type)) {
+		}
+		if (type == null || !reimbType.contains(type)) {
 			throw new InvalidParameterException(
 					"The type of reimbursement must be identified and be either 'Lodging', 'Travel', 'Food', 'Other'.");
 		}
@@ -266,4 +276,6 @@ public class ValidateUtil {
 					"Receipt image must be uploaded and can only be PNG, JPEG, or GIF file.");
 		}
 	}
+
+
 }

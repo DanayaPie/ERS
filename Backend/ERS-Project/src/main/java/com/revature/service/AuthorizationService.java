@@ -27,9 +27,9 @@ public class AuthorizationService {
 		}
 	}
 
-	// 2.
-	public void authorizeFinanaceManager(User user) throws UnauthorizedException {
-		logger.info("AuthorizationService.authorizeFinanaceManager() invoked");
+	// 2. 
+	public void authorizeFinanceManager(User user) throws UnauthorizedException {
+		logger.info("AuthorizationService.authorizeFinanceManager() invoked");
 		
 		if (user == null || !(user.getUserRole().equals(UserRoleConstants.FINANCE_MANAGER))) {
 			throw new UnauthorizedException("Must logged in as finance manager to access.");

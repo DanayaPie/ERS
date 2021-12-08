@@ -24,6 +24,11 @@ public class ExceptionMapper {
 			ctx.json(new MessageDTO(e.getMessage()));
 		});
 		
+		app.exception(ReimbursementReceiptNotFoundException.class, (e, ctx) -> {
+			ctx.status(404);
+			ctx.json(new MessageDTO(e.getMessage()));
+		});
+		
 		app.exception(StatusNotFoundException.class, (e, ctx) -> {
 			ctx.status(404);
 			ctx.json(new MessageDTO(e.getMessage()));
