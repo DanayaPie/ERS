@@ -1,5 +1,6 @@
 package com.revature.utility;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +15,8 @@ import com.revature.exception.InvalidParameterException;
 import com.revature.model.User;
 import com.revature.service.UserService;
 
+import io.javalin.http.UploadedFile;
+
 public class ValidateUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
@@ -23,6 +26,13 @@ public class ValidateUtil {
 	static List<String> allowedFileTypes = Arrays.asList("image/jpeg", "image/png", "image/gif");
 	static List<String> reimbType = Arrays.asList("Lodging", "Travel", "Food", "Other");
 	static List<String> userRoleList = Arrays.asList("employee", "finance manager");
+	
+	/*-
+	 * 	'static' method = does not have to instantiate object to call the method
+	 * 	
+	 * 	className.methodName = call the method
+	 */
+	
 	
 	public static void verifyUsernameAndPassword(String username, String password) throws FailedLoginException {
 		logger.info("ValidteUtil.verifyUsernameAndPassword() invoked");
@@ -41,7 +51,7 @@ public class ValidateUtil {
 	}
 
 	public static void verifySignUp(User user) throws InvalidParameterException, SQLException {
-		logger.info("ValidateUtil.vetifySignUp() invoked()");
+		logger.info("ValidateUtil.verifySignUp() invoked()");
 
 		/*-
 		 * 	Building String dynamically 
@@ -169,6 +179,91 @@ public class ValidateUtil {
 		if (limitUsernamePasswordBoolean) {
 			limitUsernamePasswordString.append(" cannot be more than 20 characters.");
 			throw new InvalidParameterException(limitUsernamePasswordString.toString());
+		}
+	}
+
+	public static void verifyAddReimb(String amount, String type, String description, UploadedFile file)
+			throws InvalidParameterException {
+		logger.info("ValidteUtil.verifyAddReimb() invoked");
+
+		/*- 
+		 *  building String dynamically
+		 */
+		boolean errorBoolean = false;
+
+		StringBuilder userErrorString = new StringBuilder();
+
+		if (StringUtils.isBlank(amount)) {
+			userErrorString.append("Amount");
+			errorBoolean = true;
+
+		}
+		
+		if (StringUtils.isBlank(type)) {
+			if (errorBoolean) {
+				userErrorString.append(", type");
+				errorBoolean = true;
+			} else {
+				userErrorString.append("Type");
+				errorBoolean = true;
+			}
+		}
+		
+		if (StringUtils.isBlank(description)) {
+			if (errorBoolean) {
+				userErrorString.append(", description");
+				errorBoolean = true;
+			} else {
+				userErrorString.append("Description");
+				errorBoolean = true;
+			}
+		}
+		
+		if (file == null) {
+			if (errorBoolean) {
+				userErrorString.append(", receipt");
+				errorBoolean = true;
+			} else {
+				userErrorString.append("Receipt");
+				errorBoolean = true;
+			}
+		}
+
+		if (errorBoolean) {
+			userErrorString.append(" cannot be blank.");
+			// .toString turn StringBuilder into a string
+			throw new InvalidParameterException(userErrorString.toString());
+		}
+	}
+
+	public static void verifyAndSetInputSpecificity(String amount, String type, String description, String mimeType,
+			InputStream receipt) throws InvalidParameterException, SQLException {
+		logger.info("ValidteUtil.verifyAndSetInputSpecificity() invoked");
+
+		// amount
+		Double amountReimb = Double.parseDouble(amount);
+		if (amountReimb == 0 || amountReimb < 0) {
+			throw new InvalidParameterException("Amount cannot be equal or less than 0.");
+		}
+
+		// capitalized type
+		if (type != null) {
+			type = type.substring(0, 1).toUpperCase() + type.substring(1);
+			// validate type
+		} else if (type == null || !reimbType.contains(type)) {
+			throw new InvalidParameterException(
+					"The type of reimbursement must be identified and be either 'Lodging', 'Travel', 'Food', 'Other'.");
+		}
+
+		// description
+		if (description == null) {
+			throw new InvalidParameterException("Please describe the reimbursement being requested.");
+		}
+
+		// receipt file
+		if (!allowedFileTypes.contains(mimeType)) {
+			throw new InvalidParameterException(
+					"Receipt image must be uploaded and can only be PNG, JPEG, or GIF file.");
 		}
 	}
 }

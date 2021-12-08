@@ -1,7 +1,9 @@
 package com.revature.controller;
 
+import java.io.InputStream;
 import java.util.List;
 
+import org.apache.tika.Tika;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,9 +12,11 @@ import com.revature.model.Reimbursement;
 import com.revature.model.User;
 import com.revature.service.AuthorizationService;
 import com.revature.service.ReimbursementService;
+import com.revature.utility.ValidateUtil;
 
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
+import io.javalin.http.UploadedFile;
 
 public class ReimbursementController implements Controller {
 
@@ -45,56 +49,58 @@ public class ReimbursementController implements Controller {
 		ctx.json(reimbursements);
 	};
 
-//	// getReimbursementsByStatus
-//	private Handler getReimbursementsByStatus = (ctx) -> {
-//		logger.info("ReimbursementController.getReimbursementsByStatus() invoked");
-//
-//		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
-//		this.authService.authorizeFinanceManagerAndEmployee(currentlyLoggedInUser);
-//
-//		String status = ctx.pathParam("status");
-//
-//		List<Reimbursement> reimbursements = this.reimbService.getReimbursementsByStatus(currentlyLoggedInUser, status);
-//
-//		ctx.json(reimbursements);
-//	};
-//
-//	// addReimbursements
-//	private Handler addReimbursements = (ctx) -> {
-//		logger.info("ReimbursementController.addReimbursements() invoked");
-//
-//		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
-//		this.authService.authorizeFinanceManagerAndEmployee(currentlyLoggedInUser);
-//
-//		String amount = ctx.formParam("amount");
-//		String type = ctx.formParam("type");
-//		String description = ctx.formParam("description");
-//
-//		// Extracting file from HTTP Request
-//		UploadedFile file = ctx.uploadedFile("receipt");
-//		
-//		// call the class without instantiate it because the method is 'static'
-//		ValidateUtil.verifyAddReimb(amount, type, description,  file);
-//
-//		// set the actual content of the file to 'receipt'
-//		InputStream receipt = file.getContent();
-//		
-//		// Apache Tika is a content detection and analysis framwork
-//		Tika tika = new Tika();
-//
-//		// file type of the content is detect by tika and store as 'mimeType'
-//		// mimeType = Multipurpose Internet Mail Extensions
-//		String mimeType = tika.detect(receipt);
-//
-//		ValidateUtil.verifyAndSetInputSpecificity(amount, type,
-//				description, mimeType, receipt);
-//		Reimbursement addReimbursement = this.reimbService.addReimbursement(currentlyLoggedInUser, amount, type,
-//				description, mimeType, receipt);
-//
-//		ctx.json(addReimbursement);
-//		ctx.status(201);
-//	};
-//
+	// getReimbursementsByStatus
+	private Handler getReimbursementsByStatus = (ctx) -> {
+		logger.info("ReimbursementController.getReimbursementsByStatus() invoked");
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
+		this.authService.authorizeFinanceManagerAndEmployee(currentlyLoggedInUser);
+
+		String status = ctx.pathParam("status");
+
+		List<Reimbursement> reimbursements = this.reimbService.getReimbursementsByStatus(currentlyLoggedInUser, status);
+
+		ctx.json(reimbursements);
+	};
+
+	// addReimbursements
+	private Handler addReimbursements = (ctx) -> {
+		logger.info("ReimbursementController.addReimbursements() invoked");
+
+		User currentlyLoggedInUser = (User) ctx.req.getSession().getAttribute("currentUser");
+		this.authService.authorizeFinanceManagerAndEmployee(currentlyLoggedInUser);
+
+		Double amount = Double.parseDouble(ctx.formParam("amount"));
+		
+		String type = ctx.formParam("type");
+		String description = ctx.formParam("description");
+
+		// Extracting file from HTTP Request
+		UploadedFile file = ctx.uploadedFile("receipt");
+		
+		// call the class without instantiate it because the method is 'static'
+		ValidateUtil.verifyAddReimb(amount, type, description,  file);
+
+		// set the actual content of the file to 'receipt'
+		InputStream receipt = file.getContent();
+		
+		// Apache Tika is a content detection and analysis framwork
+		Tika tika = new Tika();
+
+		// file type of the content is detect by tika and store as 'mimeType'
+		// mimeType = Multipurpose Internet Mail Extensions
+		String mimeType = tika.detect(receipt);
+
+		ValidateUtil.verifyAndSetInputSpecificity(amount, type,
+				description, mimeType, receipt);
+		
+		Reimbursement addReimbursement = this.reimbService.addReimbursement(currentlyLoggedInUser, amount, type,
+				description, mimeType, receipt);
+
+		ctx.json(addReimbursement);
+		ctx.status(201);
+	};
+
 //	// getRecieptByReimbursementId
 //	private Handler getRecieptByReimbursementId = (ctx) -> {
 //		logger.info("ReimbursementController.getRecieptByReimbursementId() invoked");
@@ -141,8 +147,8 @@ public class ReimbursementController implements Controller {
 	@Override
 	public void mapEndpoints(Javalin app) {
 		app.get(EndpointConstants.GET_REIMBURSEMENTS, getReimbursements);
-//		app.get(EndpointConstants.GET_REIMBURSEMENTS_BYSTATUS, getReimbursementsByStatus);
-//		app.post(EndpointConstants.POST_REIMBURSEMENTS, addReimbursements);
+		app.get(EndpointConstants.GET_REIMBURSEMENTS_BYSTATUS, getReimbursementsByStatus);
+		app.post(EndpointConstants.POST_REIMBURSEMENTS, addReimbursements);
 //		app.get(EndpointConstants.GET_RECEIPT, getRecieptByReimbursementId);
 //		app.patch(EndpointConstants.PATCH_REIMBURSEMENTS, updateReimbursements);
 	}

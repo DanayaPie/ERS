@@ -5,7 +5,7 @@ CREATE TABLE reimbursement (
 	amount NUMERIC NOT NULL,
 	submitted_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	resolved_time TIMESTAMP,
-	status VARCHAR(20) DEFAULT 'PENDING',
+	status VARCHAR(20) DEFAULT 'Pending',
 	type VARCHAR(50) NOT NULL,
 	description VARCHAR(200) NOT NULL,
 	receipt BYTEA,
