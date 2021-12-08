@@ -1,0 +1,26 @@
+package com.revature.exception;
+
+public class InvalidAccessCodeException extends Exception {
+
+	public InvalidAccessCodeException() {
+		super();
+	}
+
+	public InvalidAccessCodeException(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+	public InvalidAccessCodeException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public InvalidAccessCodeException(String message) {
+		super(message);
+	}
+
+	public InvalidAccessCodeException(Throwable cause) {
+		super(cause);
+	}
+
+}
