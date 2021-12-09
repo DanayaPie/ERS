@@ -12,6 +12,9 @@ public class SignUpPage {
 	private WebDriver driver;
 	private WebDriverWait wdw; // explicit waits
 	
+	@FindBy(xpath="//h1[contains(text(),'Sign Up')]")
+	private WebElement heading;
+	
 	@FindBy(xpath="//input[@id='firstName-input']")
 	private WebElement firstNameInput;
 	
@@ -33,9 +36,16 @@ public class SignUpPage {
 	@FindBy(xpath="//div[@id='errorMessage']")
 	private WebElement errorMessage;
 	
+	@FindBy(xpath="//button[@id='signUp-btn']")
+	private WebElement signUpButton;
+	
 	public SignUpPage(WebDriver driver) {
 		this.driver = driver;
 		this.wdw = new WebDriverWait(driver, Duration.ofSeconds(5));
+	}
+	
+	public WebElement getHeading() {
+		return this.getHeading();
 	}
 
 	public WebElement getFirstNameInput() {
@@ -64,6 +74,10 @@ public class SignUpPage {
 	
 	public WebElement geterrorMessage() {
 		return this.errorMessage;
+	}
+	
+	public WebElement getSignUpButton() {
+		return this.signUpButton;
 	}
 	
 }

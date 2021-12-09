@@ -1,6 +1,8 @@
 package com.revature.glucode;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
@@ -15,22 +17,38 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SignInTest {
-	
-	Logger logger = LoggerFactory.getLogger(SignInTest.class);
 
 	private WebDriver driver;
 	private SignInPage signInPage;
 	private EmployeeHomepage employeeHomepage;
 	private FinanceManagerHomepage financeManagerHomepage;
-	
-	@Given("I am at the login page")
-	public void i_am_at_the_login_page() {
-		
+
+	@BeforeEach
+	public void setUp() {
+
+		System.setProperty("webdriver.chrome.driver", "C:\\webdrivers/chromedriver.exe");
+
+		this.driver = new ChromeDriver();
+
+		this.driver.get("http://127.0.0.1:5500/");
+		this.signInPage = new SignInPage(driver);
+
+	}
+
+	@AfterEach
+	public void closeTest() {
+
+		this.driver.quit();
+	}
+
+	@Given("I am at the login page to sign in")
+	public void i_am_at_the_login_page_to_sign_in() {
+
 		// Selenium set up
 		System.setProperty("webdriver.chrome.driver", "C:\\webdrivers/chromedriver.exe");
 
 		this.driver = new ChromeDriver();
-		
+
 		this.driver.get("http://127.0.0.1:5500/");
 		this.signInPage = new SignInPage(driver);
 	}
@@ -49,24 +67,21 @@ public class SignInTest {
 	public void i_click_the_signin_button() {
 		this.signInPage.getLoginButton().click(); // click LogInButton
 	}
-	
+
 	/*-
 	 *  Positive Tests
 	 */
 	@Then("I should be redirected to the finance manager homepage")
 	public void i_should_be_redirected_to_the_finance_manager_homepage() {
-		
 		this.financeManagerHomepage = new FinanceManagerHomepage(this.driver);
 
 		String expectedWelcomeHeadingText = "Welcome to Finance Manager Homepage";
 
 		Assertions.assertEquals(expectedWelcomeHeadingText, this.financeManagerHomepage.getWelcomeHeading().getText());
-	
-		logger.info("-------------------------------");
-		
+
 		this.driver.quit();
 	}
-	
+
 	@Then("I should be redicrected to the employee homepage")
 	public void i_should_be_redicrected_to_the_employee_homepage() {
 		this.employeeHomepage = new EmployeeHomepage(this.driver);
@@ -75,22 +90,18 @@ public class SignInTest {
 
 		Assertions.assertEquals(expectedWelcomeHeadingText, this.employeeHomepage.getWelcomeHeading().getText());
 
-		logger.info("-------------------------------");
-		
 		this.driver.quit();
 	}
-	
+
 	/*-
 	 *  Negative Tests
 	 */
 	@Then("I should see a message of {string}")
 	public void i_should_see_a_message_of(String string) {
 		String actual = this.signInPage.getErrorMessagElement().getText();
-		
+
 		Assertions.assertEquals(string, actual);
-		
-		
-		
+
 		this.driver.quit();
 	}
 }
