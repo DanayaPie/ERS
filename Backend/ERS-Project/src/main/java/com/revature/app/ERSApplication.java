@@ -18,7 +18,7 @@ public class ERSApplication {
 
 		Logger logger = LoggerFactory.getLogger(ERSApplication.class);
 
-		Javalin app = Javalin.create((config) -> {
+		Javalin app = Javalin.create(config -> {
 
 			// 'enableCors' enabling other hosts/ports to be able to use the
 			// server

@@ -1,4 +1,4 @@
-package page;
+package com.revature.page;
 
 import java.time.Duration;
 
@@ -30,9 +30,40 @@ public class SignUpPage {
 	@FindBy(xpath="//input[@id='userRole-input']")
 	private WebElement userRoleInput;
 	
+	@FindBy(xpath="//div[@id='errorMessage']")
+	private WebElement errorMessage;
+	
 	public SignUpPage(WebDriver driver) {
 		this.driver = driver;
-		this.wdw = new WebDriverWait(driver, Duration.ofSeconds(8));
+		this.wdw = new WebDriverWait(driver, Duration.ofSeconds(5));
+	}
+
+	public WebElement getFirstNameInput() {
+		return this.firstNameInput;
+	}
+	
+	public WebElement getLastNameInput() {
+		return this.lastNameInput;
+	}
+	
+	public WebElement getUsernameInput() {
+		return this.usernameInput;
+	}
+	
+	public WebElement getPasswordInput() {
+		return this.passwordInput;
+	}
+	
+	public WebElement getemailInput() {
+		return this.emailInput;
+	}
+	
+	public WebElement getuserRoleInput() {
+		return this.userRoleInput;
+	}
+	
+	public WebElement geterrorMessage() {
+		return this.errorMessage;
 	}
 	
 }

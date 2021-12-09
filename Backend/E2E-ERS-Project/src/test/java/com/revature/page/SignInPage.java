@@ -1,4 +1,4 @@
-package page;
+package com.revature.page;
 
 import java.time.Duration;
 
@@ -23,12 +23,15 @@ public class SignInPage {
 	@FindBy(xpath="//button[@id='login-btn']") // PageFactory annotation
 	private WebElement loginButton;
 	
+	@FindBy(xpath="//a[contains(text(),'Sign up')]")
+	private WebElement signUpButton;
+	
 	@FindBy(id="errorMessage") // PageFactory annotation
 	private WebElement errorMessage;
 	
 	public SignInPage(WebDriver driver) {
 		this.driver = driver;
-		this.wdw = new WebDriverWait(driver, Duration.ofSeconds(8));
+		this.wdw = new WebDriverWait(driver, Duration.ofSeconds(5));
 		
 		// PageFactor initialization
 		PageFactory.initElements(driver, this);
@@ -49,10 +52,14 @@ public class SignInPage {
 	public WebElement getErrorMessagElement() {
 		
 		/*-
-		 * 	Explicitely wait at most 15 seconds for the error message to appear
+		 * 	Explicitely wait at most 5 seconds for the error message to appear
 		 * 	- may not have to wait but just in case, so it does not throw an exception
 		 */
 		return this.wdw.until(ExpectedConditions.visibilityOf(this.errorMessage));
+	}
+	
+	public WebElement getSignUpButton() {
+		return this.signUpButton;
 	}
 	
 }

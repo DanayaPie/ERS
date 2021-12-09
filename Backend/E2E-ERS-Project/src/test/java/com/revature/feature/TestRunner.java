@@ -1,4 +1,4 @@
-package feature;
+package com.revature.feature;
 
 import io.cucumber.junit.platform.engine.Cucumber;
 
