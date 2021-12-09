@@ -28,7 +28,7 @@ public class SignInPage {
 	
 	public SignInPage(WebDriver driver) {
 		this.driver = driver;
-		this.wdw = new WebDriverWait(driver, Duration.ofSeconds(15));
+		this.wdw = new WebDriverWait(driver, Duration.ofSeconds(8));
 		
 		// PageFactor initialization
 		PageFactory.initElements(driver, this);

@@ -30,6 +30,11 @@ public class SignInTest {
 		this.signInPage = new SignInPage(driver);
 	}
 
+	
+	/*-
+	 *  Positive Tests
+	 */
+	
 	@When("I type in a username of {string}")
 	public void i_type_in_a_username_of(String string) {
 		this.signInPage.getUsernameInput().sendKeys(string);
@@ -53,6 +58,26 @@ public class SignInTest {
 
 		Assertions.assertEquals(expectedWelcomeHeadingText, this.financeManagerHomepage.getWelcomeHeading().getText());
 
+		this.driver.quit();
+	}
+	
+	@Then("I should be redicrected to the employee homepage")
+	public void i_should_be_redicrected_to_the_employee_homepage() {
+		this.employeeHomepage = new EmployeeHomepage(this.driver);
+
+		String expectedWelcomeHeadingText = "Welcome to Employee Homepage";
+
+		Assertions.assertEquals(expectedWelcomeHeadingText, this.employeeHomepage.getWelcomeHeading().getText());
+
+		this.driver.quit();
+	}
+	
+	@Then("I should see a message of {string}")
+	public void i_should_see_a_message_of(String string) {
+		String actual = this.signInPage.getErrorMessagElement().getText();
+		
+		Assertions.assertEquals(string, actual);
+		
 		this.driver.quit();
 	}
 }
