@@ -2,6 +2,9 @@ package com.revature.exception;
 
 public class ReimbursementNotFoundException extends Exception{
 
+	// Extension have serialVersionUID thus anything that extends Exception should have serialVersionUID
+	private static final long serialVersionUID = 8218505039454055038L;
+
 	public ReimbursementNotFoundException() {
 		super();
 	}

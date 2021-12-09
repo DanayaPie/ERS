@@ -2,6 +2,9 @@ package com.revature.exception;
 
 public class InvalidParameterException extends Exception {
 
+	// Extension have serialVersionUID thus anything that extends Exception should have serialVersionUID
+	private static final long serialVersionUID = -5235883428728334797L;
+
 	public InvalidParameterException() {
 		super();
 	}

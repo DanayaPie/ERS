@@ -62,18 +62,18 @@ public class ReimbursementDAO {
 					resolvedDateTimestamp = dateFormat.format(new Date(resolvedTime.getTime()));
 				}
 
-				Reimbursement r = new Reimbursement();
-				r.setReimbId(reimbId);
-				r.setAmount(amount);
-				r.setSubmittedTime(submittedDateTimestamp);
-				r.setResolvedTime(resolvedDateTimestamp);
-				r.setStatus(status);
-				r.setType(type);
-				r.setDescription(description);
-				r.setAuthorId(authorId);
-				r.setResolverId(resolverId);
+				Reimbursement retrievedReimb = new Reimbursement();
+				retrievedReimb.setReimbId(reimbId);
+				retrievedReimb.setAmount(amount);
+				retrievedReimb.setSubmittedTime(submittedDateTimestamp);
+				retrievedReimb.setResolvedTime(resolvedDateTimestamp);
+				retrievedReimb.setStatus(status);
+				retrievedReimb.setType(type);
+				retrievedReimb.setDescription(description);
+				retrievedReimb.setAuthorId(authorId);
+				retrievedReimb.setResolverId(resolverId);
 
-				reimbursements.add(r);
+				reimbursements.add(retrievedReimb);
 			}
 
 			return reimbursements;
@@ -115,18 +115,18 @@ public class ReimbursementDAO {
 					resolvedDateTimestamp = dateFormat.format(new Date(resolvedTime.getTime()));
 				}
 
-				Reimbursement r = new Reimbursement();
-				r.setReimbId(reimbId);
-				r.setAmount(amount);
-				r.setSubmittedTime(submittedDateTimestamp);
-				r.setResolvedTime(resolvedDateTimestamp);
-				r.setStatus(status);
-				r.setType(type);
-				r.setDescription(description);
-				r.setAuthorId(authorId);
-				r.setResolverId(resolverId);
+				Reimbursement retrievedReimb = new Reimbursement();
+				retrievedReimb.setReimbId(reimbId);
+				retrievedReimb.setAmount(amount);
+				retrievedReimb.setSubmittedTime(submittedDateTimestamp);
+				retrievedReimb.setResolvedTime(resolvedDateTimestamp);
+				retrievedReimb.setStatus(status);
+				retrievedReimb.setType(type);
+				retrievedReimb.setDescription(description);
+				retrievedReimb.setAuthorId(authorId);
+				retrievedReimb.setResolverId(resolverId);
 
-				reimbursements.add(r);
+				reimbursements.add(retrievedReimb);
 			}
 			
 			return reimbursements;
@@ -168,18 +168,18 @@ public class ReimbursementDAO {
 					resolvedDateTimestamp = dateFormat.format(new Date(resolvedTime.getTime()));
 				}
 
-				Reimbursement r = new Reimbursement();
-				r.setReimbId(reimbId);
-				r.setAmount(amount);
-				r.setSubmittedTime(submittedDateTimestamp);
-				r.setResolvedTime(resolvedDateTimestamp);
-				r.setStatus(status);
-				r.setType(type);
-				r.setDescription(description);
-				r.setAuthorId(authorId);
-				r.setResolverId(resolverId);
+				Reimbursement retrievedReimb = new Reimbursement();
+				retrievedReimb.setReimbId(reimbId);
+				retrievedReimb.setAmount(amount);
+				retrievedReimb.setSubmittedTime(submittedDateTimestamp);
+				retrievedReimb.setResolvedTime(resolvedDateTimestamp);
+				retrievedReimb.setStatus(status);
+				retrievedReimb.setType(type);
+				retrievedReimb.setDescription(description);
+				retrievedReimb.setAuthorId(authorId);
+				retrievedReimb.setResolverId(resolverId);
 
-				reimbursements.add(r);
+				reimbursements.add(retrievedReimb);
 			}
 
 			return reimbursements;
@@ -262,19 +262,19 @@ public class ReimbursementDAO {
 					resolvedDateTimestamp = dateFormat.format(new Date(resolvedTime.getTime()));
 				}
 				
-				Reimbursement r = new Reimbursement();
+				Reimbursement retrievedReimb = new Reimbursement();
 				
-				r.setReimbId(reimbId);
-				r.setAmount(amount);
-				r.setSubmittedTime(submittedDateTimestamp);
-				r.setResolvedTime(resolvedDateTimestamp);
-				r.setStatus(status);
-				r.setType(type);
-				r.setDescription(description);
-				r.setAuthorId(authorId);
-				r.setResolverId(resolverId);
+				retrievedReimb.setReimbId(reimbId);
+				retrievedReimb.setAmount(amount);
+				retrievedReimb.setSubmittedTime(submittedDateTimestamp);
+				retrievedReimb.setResolvedTime(resolvedDateTimestamp);
+				retrievedReimb.setStatus(status);
+				retrievedReimb.setType(type);
+				retrievedReimb.setDescription(description);
+				retrievedReimb.setAuthorId(authorId);
+				retrievedReimb.setResolverId(resolverId);
 				
-				return r;
+				return retrievedReimb;
 			}
 			return null;
 		}

@@ -2,6 +2,9 @@ package com.revature.exception;
 
 public class StatusNotFoundException extends Exception{
 
+	// Extension have serialVersionUID thus anything that extends Exception should have serialVersionUID
+	private static final long serialVersionUID = 4494529205359168666L;
+
 	public StatusNotFoundException() {
 		super();
 	}

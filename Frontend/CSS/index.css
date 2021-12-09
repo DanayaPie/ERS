@@ -13,7 +13,7 @@ html {
   align-content: center;
   min-height: 100%;
 
-  background-image: url("/images/spending1.jpg");
+  background-image: url("../images/spending1.jpg");
   background-color: white;
   background-size: cover;
   opacity: 80%;

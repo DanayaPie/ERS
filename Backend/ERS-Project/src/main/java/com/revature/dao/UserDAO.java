@@ -41,16 +41,16 @@ public class UserDAO {
 				String email = rs.getString("email");
 				String userRole = rs.getString("user_role");
 				
-				User u = new User();
-				u.setUserId(userId);
-				u.setFirstName(firstName);
-				u.setLastName(lastName);
-				u.setUsername(user);
-				u.setPassword(pass);
-				u.setEmail(email);
-				u.setUserRole(userRole);
+				User retrievedUser = new User();
+				retrievedUser.setUserId(userId);
+				retrievedUser.setFirstName(firstName);
+				retrievedUser.setLastName(lastName);
+				retrievedUser.setUsername(user);
+				retrievedUser.setPassword(pass);
+				retrievedUser.setEmail(email);
+				retrievedUser.setUserRole(userRole);
 
-				return u;
+				return retrievedUser;
 			} else {
 				return null;
 			}
