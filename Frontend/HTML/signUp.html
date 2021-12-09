@@ -1,98 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
 
-    <link rel="stylesheet" href="../CSS/signUp.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../CSS/signUp.css" />
+  </head>
+  <body>
     <div class="flexbox-container">
-        <div class="flexbox-item">
+      <div class="flexbox-item">
+        <div class="info">
+          <div class="title">
+            <h1>Sign Up</h1>
+          </div>
 
-            <div class="info">
-                <div class="title">
-                    <h1>Sign Up</h1>
-                </div>
-
-                <div class="login-info">
-                  <div class="labels">
-                    <div class="firstName">
-                        <label for="firstName">First name:</label>
-                    </div>
-                    <div class="lastName">
-                        <label for="lastName">Last name:</label>
-                    </div>
-                    <div class="username">
-                        <label for="usernamee">Username:</label>
-                    </div>
-                    <div class="password">
-                        <label for="password">Password:</label>
-                    </div>
-                    <div class="email">
-                        <label for="email">Email:</label>
-                    </div>
-                    <div class="userRole">
-                        <label for="userRole:">User role:</label>
-                    </div>
-                  </div>
-                  <div class="inputs">
-                    <div class="firstNameInput">
-                        <input id="firstName-input">
-                    </div>
-                    <div class="lastNameInput">
-                        <input id="lastName-input">
-                    </div>
-                    <div class="usernameInput">
-                        <input id="username-input">
-                    </div>
-                    <div class="passwordInput">
-                        <input id="password-input" type="password">
-                        <br>
-                        <!-- password visibility -->
-                            <input type="checkbox" onclick="passFunction()">Show Password
-                            <script>
-                                // password visibility
-                                function passFunction() {
-                                    var passwordInput = document.getElementById('password-input');
-                                    if (passwordInput.type === "password") {
-                                        passwordInput.type = "text";
-                                    } else {
-                                        passwordInput.type = "password";
-                                    }
-                                } 
-                            </script>
-                        <br>
-                    </div>
-                    <div class="emailInput">
-                        <input id="email-input">
-                    </div>
-                    <div class="userRoleInput">
-                        <input id="userRole-input">
-                    </div>
-                  </div>
-                </div>
-                <div class="bottom">
-                  <div class="errorMessage">
-                    <div id="errorMessage"></div>
-                  </div>
-                  <div class="button">
-                    <button id="signUp-btn">Sign up</button>
-                  </div>
-                  <div class="signin">
-                    <label for="haveAccount">Already have an account?</label>
-                    <a href="/index.html">Sign in</a>
-                  </div>
-                </div>
+          <div class="login-info">
+            <div class="labels">
+              <div class="firstName">
+                <label for="firstName">First name:</label>
               </div>
-
-
+              <div class="lastName">
+                <label for="lastName">Last name:</label>
+              </div>
+              <div class="username">
+                <label for="usernamee">Username:</label>
+              </div>
+              <div class="password">
+                <label for="password">Password:</label>
+              </div>
+              <div class="email">
+                <label for="email">Email:</label>
+              </div>
+              <div class="userRole">
+                <label for="userRole:">User role:</label>
+              </div>
+            </div>
+            <div class="inputs">
+              <div class="firstNameInput">
+                <input id="firstName-input" />
+              </div>
+              <div class="lastNameInput">
+                <input id="lastName-input" />
+              </div>
+              <div class="usernameInput">
+                <input id="username-input" />
+              </div>
+              <div class="passwordInput">
+                <input id="password-input" type="password" />
+                <br />
+                <!-- password visibility -->
+                <input type="checkbox" onclick="passFunction()" />Show Password
+                <script>
+                  // password visibility
+                  function passFunction() {
+                    var passwordInput =
+                      document.getElementById("password-input");
+                    if (passwordInput.type === "password") {
+                      passwordInput.type = "text";
+                    } else {
+                      passwordInput.type = "password";
+                    }
+                  }
+                </script>
+                <br />
+              </div>
+              <div class="emailInput">
+                <input id="email-input" />
+              </div>
+              <div class="userRoleInput">
+                <input id="userRole-input" />
+              </div>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="errorMessage">
+              <div id="errorMessage"></div>
+            </div>
+            <div class="button">
+              <button id="signUp-btn">Sign up</button>
+            </div>
+            <div class="signin">
+              <label for="haveAccount">Already have an account?</label>
+              <a href="/index.html">Sign in</a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    
-    <script src="/JavaScript/signUp.js"></script>
-</body>
+
+    <script src="../JavaScript/signUp.js"></script>
+  </body>
 </html>

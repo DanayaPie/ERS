@@ -16,9 +16,9 @@ window.addEventListener('load', async () => {
         let userObj = await res.json(); // 1st fetch promise as JSON
 
         if (userObj.userRole === 'employee') {
-            window.location.href = '/HTML/employeeHomepage.html';
+            window.location.href = '../HTML/employeeHomepage.html';
         } else if (userObj.userRole === 'finance manager') {
-            window.location.href = '/HTML/financeManagerHomepage.html';
+            window.location.href = '../HTML/financeManagerHomepage.html';
         }
     }
 });
@@ -60,7 +60,7 @@ async function signup() {
         }
 
         if (res.status === 200) {
-            window.location.href = '/index.html';
+            window.location.href = '../index.html';
         }
     
     } catch(err) {

@@ -15,10 +15,10 @@ window.addEventListener('load', async () => {
         let userObj = await res.json();
 
         if (userObj.userRole === 'finance manager') {
-            window.location.href = '/HTML/financeManagerHomepage.html';
+            window.location.href = './HTML/financeManagerHomepage.html';
         } 
     } else if (res.status === 401) {
-        window.location.href = '/index.html';
+        window.location.href = '../index.html';
     }
 
     // retrieve all reimbursement table once sign in
@@ -37,7 +37,7 @@ logoutBtn.addEventListener('click', async () => {
     });
 
     if (res.status === 200) {
-        window.location.href = '/index.html';
+        window.location.href = '../index.html';
     }
 })
 

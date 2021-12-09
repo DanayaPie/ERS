@@ -16,9 +16,9 @@ window.addEventListener('load', async () => {
         let userObj = await res.json(); // 1st fetch promise as JSON
 
         if (userObj.userRole === 'employee') {
-            window.location.href = '/HTML/employeeHomepage.html';
+            window.location.href = './HTML/employeeHomepage.html';
         } else if (userObj.userRole === 'finance manager') {
-            window.location.href = '/HTML/financeManagerHomepage.html';
+            window.location.href = './HTML/financeManagerHomepage.html';
         }
     }
 });
@@ -61,9 +61,9 @@ async function login() {
         // 200 status code = data variable represent an object corresponds w user
         if (res.status === 200) {
             if (data.userRole === 'employee') {
-                window.location.href = '/HTML/employeeHomepage.html';
+                window.location.href = './HTML/employeeHomepage.html';
             } else if (data.userRole === 'finance manager') {
-                window.location.href = '/HTML/financeManagerHomepage.html';
+                window.location.href = './HTML/financeManagerHomepage.html';
             }
         }
     } catch(err) {
