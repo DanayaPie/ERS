@@ -5,10 +5,16 @@ import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SignUpPage {
 
+	private Logger logger = LoggerFactory.getLogger(SignUpPage.class);
+
+	
 	private WebDriver driver;
 	private WebDriverWait wdw; // explicit waits
 	
@@ -45,7 +51,8 @@ public class SignUpPage {
 	}
 	
 	public WebElement getHeading() {
-		return this.getHeading();
+	
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.heading));
 	}
 
 	public WebElement getFirstNameInput() {

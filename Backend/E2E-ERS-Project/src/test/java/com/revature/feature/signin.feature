@@ -1,7 +1,7 @@
 Feature: Sign In
 
   Scenario: Successful finance manager login (positive)
-    Given I am at the login page to sign in
+    Given I am at the login page
     When I type in a username of "JohnD"
     And I type in a password of "John123"
     And I click the signin button
@@ -9,19 +9,24 @@ Feature: Sign In
 
 
 	Scenario Outline: Successful employee login (positive)
-    Given I am at the login page to sign in
+    Given I am at the login page
 		When I type in a username of <username>
 		And I type in a password of <password>
 		And I click the signin button
-		Then I should be redicrected to the employee homepage
+		Then I should be redirected to the employee homepage
 		
 		Examples:
 		| username | password |
 		| "JaneD" | "Jane123" |
 		| "DavidG" | "David123" |
 		
+	Scenario: Test sign up button (possitive)
+		Given I am at the login page
+		When I click the sign up button
+		Then I should be redirected to the sign up page
+		
 	Scenario Outline: <scenario> (negative)
-    Given I am at the login page to sign in
+    Given I am at the login page
 		When I type in a username of <username>
 		And I type in a password of <password>
 		And I click the signin button

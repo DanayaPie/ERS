@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.revature.page.EmployeeHomepage;
 import com.revature.page.FinanceManagerHomepage;
 import com.revature.page.SignInPage;
+import com.revature.page.SignUpPage;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -18,8 +19,11 @@ import io.cucumber.java.en.When;
 
 public class SignInTest {
 
+	private Logger logger = LoggerFactory.getLogger(SignInTest.class);
+
 	private WebDriver driver;
 	private SignInPage signInPage;
+	private SignUpPage signUpPage;
 	private EmployeeHomepage employeeHomepage;
 	private FinanceManagerHomepage financeManagerHomepage;
 
@@ -41,8 +45,8 @@ public class SignInTest {
 		this.driver.quit();
 	}
 
-	@Given("I am at the login page to sign in")
-	public void i_am_at_the_login_page_to_sign_in() {
+	@Given("I am at the login page")
+	public void i_am_at_the_login_page() {
 
 		// Selenium set up
 		System.setProperty("webdriver.chrome.driver", "C:\\webdrivers/chromedriver.exe");
@@ -67,6 +71,12 @@ public class SignInTest {
 	public void i_click_the_signin_button() {
 		this.signInPage.getLoginButton().click(); // click LogInButton
 	}
+	
+	@When("I click the sign up button")
+	public void i_click_the_sign_up_button() {
+		
+		this.signInPage.getSignUpButton().click();
+	}
 
 	/*-
 	 *  Positive Tests
@@ -82,13 +92,26 @@ public class SignInTest {
 		this.driver.quit();
 	}
 
-	@Then("I should be redicrected to the employee homepage")
-	public void i_should_be_redicrected_to_the_employee_homepage() {
+	@Then("I should be redirected to the employee homepage")
+	public void i_should_be_redirected_to_the_employee_homepage() {
 		this.employeeHomepage = new EmployeeHomepage(this.driver);
 
 		String expectedWelcomeHeadingText = "Welcome to Employee Homepage";
 
 		Assertions.assertEquals(expectedWelcomeHeadingText, this.employeeHomepage.getWelcomeHeading().getText());
+
+		this.driver.quit();
+	}
+	
+	@Then("I should be redirected to the sign up page")
+	public void i_should_be_redirected_to_the_sign_up_page() {
+		this.signUpPage = new SignUpPage(this.driver);
+		
+		String expectedHeadingText = "Sign Up";
+
+		logger.info("getText() {}", this.signUpPage.getHeading().getText());
+		
+		Assertions.assertEquals(expectedHeadingText, this.signUpPage.getHeading().getText());
 
 		this.driver.quit();
 	}
