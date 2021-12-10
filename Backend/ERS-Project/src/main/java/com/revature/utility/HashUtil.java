@@ -41,5 +41,12 @@ public class HashUtil {
 		
 		return bytesToStringHex(hash);
 	}
+
+	public static String unhashPassword(String password) {
+
+		
+		
+		return null;
+	}
 	
 }

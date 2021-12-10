@@ -29,6 +29,8 @@ public class UserService {
 			throws SQLException, FailedLoginException {
 		logger.info("UserService.getUserByUsernameAndPassword() invoked");
 
+		String unhashedPassword = HashUtil.unhashPassword(password);
+		
 		User user = this.userDao.getUserByUsernameAndPassword(username, password);
 
 		if (user == null) {

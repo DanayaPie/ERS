@@ -1,5 +1,7 @@
 package com.revature.UserServiceTest;
 
+import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.sql.SQLException;
@@ -9,6 +11,7 @@ import javax.security.auth.login.FailedLoginException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
@@ -41,9 +44,14 @@ public class getUserByUsernameAndPasswordTest {
 				new ClassPathResource(TableConstant.DROP_USER_SCRIPT));
 	}
 
-	@Test
-	public void getUserByUsernameAndPasswordPositiveTest() throws SQLException, FailedLoginException {
-		User john = userSerive.getUserByUsernameAndPassword("JohnD", "John123");
-		assertNotEquals(john, null);
-	}
+//	@Test
+//	public void getUserByUsernameAndPasswordTest_Positive() throws SQLException, FailedLoginException {
+//		User user = userSerive.getUserByUsernameAndPassword("JohnD", "John123");
+//		assertNotEquals(user, null);
+//	}
+	
+//	@Test
+//	public void getUserWithInvalidUsernameAndPassowrdTest_Negative() throws FailedLoginException, SQLException {
+//		User user = userSerive.getUserByUsernameAndPassword("J123", "J123");
+//		exceptionRule.expect(NumberFormatException.class);
 }
