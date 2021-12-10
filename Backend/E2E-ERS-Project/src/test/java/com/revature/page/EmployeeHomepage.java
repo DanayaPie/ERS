@@ -16,6 +16,21 @@ public class EmployeeHomepage {
 
 	@FindBy(xpath = "//*[text()='Welcome to Employee Homepage']") // PageFactory annotation
 	private WebElement welcomeHeading;
+	
+	@FindBy(xpath="//button[@id='logout-btn']")
+	private WebElement signOutButton;
+	
+	@FindBy(xpath="//select[@id='status-dropdown']")
+	private WebElement filterStatusInput;
+	
+	@FindBy(xpath="//button[@id='status-filter-btn']")
+	private WebElement filterStatusButton;
+	
+	@FindBy(xpath="//tbody//tr//td//select")
+	private WebElement upDateStatusInput;
+	
+	@FindBy (xpath="//tbody/tr/td[12]/button[1]")
+	private WebElement upDateStatusButton;
 
 	public EmployeeHomepage(WebDriver driver) {
 		this.driver = driver;
@@ -29,5 +44,25 @@ public class EmployeeHomepage {
 	
 	public WebElement getWelcomeHeading() {
 		return this.wdw.until(ExpectedConditions.visibilityOf(welcomeHeading));
+	}
+	
+	public WebElement getSignOutButton() {
+		return this.signOutButton;
+	}
+	
+	public WebElement getFilterStatusInput() {
+		return this.filterStatusInput;
+	}
+	
+	public WebElement getFilterStatusButton() {
+		return this.filterStatusButton;
+	}
+	
+	public WebElement getUpDateStatusInput() {
+		return this.upDateStatusInput;
+	}
+	
+	public WebElement getUpDateStatusButton() {
+		return this.upDateStatusButton;
 	}
 }

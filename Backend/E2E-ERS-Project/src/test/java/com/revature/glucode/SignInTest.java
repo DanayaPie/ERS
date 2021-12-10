@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.revature.page.EmployeeHomepage;
 import com.revature.page.FinanceManagerHomepage;
@@ -18,8 +16,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SignInTest {
-
-	private Logger logger = LoggerFactory.getLogger(SignInTest.class);
 
 	private WebDriver driver;
 	private SignInPage signInPage;
@@ -108,8 +104,6 @@ public class SignInTest {
 		this.signUpPage = new SignUpPage(this.driver);
 		
 		String expectedHeadingText = "Sign Up";
-
-		logger.info("getText() {}", this.signUpPage.getHeading().getText());
 		
 		Assertions.assertEquals(expectedHeadingText, this.signUpPage.getHeading().getText());
 

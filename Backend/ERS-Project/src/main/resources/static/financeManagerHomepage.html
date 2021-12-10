@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance Manager</title>
+
+    <link rel="stylesheet" href="../CSS/financeManagerHomepage.css" />
+  </head>
+  <body>
+    <!-- Pop up image -->
+    <div id="receipt-image-modal" class="modal">
+      <!-- The Close Button -->
+      <span class="close">&times;</span>
+
+      <!-- Modal Content (The Image) -->
+      <img class="modal-content" id="img" />
+    </div>
+
+    <div class="page-container">
+      <div class="content-container">
+        <div class="heading">
+          <h1>Welcome to Finance Manager Homepage</h1>
+          <div class="center-btn">
+            <button id="logout-btn">Sign out</button>
+          </div>
+        </div>
+
+        <!-- filter status -->
+        <div class="content-filterStatus">
+          <div class="heading">
+            <h2>Filter Reimbursement by Status</h2>
+          </div>
+
+          <div class="status-container">
+            <div class="row-container">
+              <label for="status" class="stretch">Status:</label>
+              <select id="status-dropdown" class="stretch">
+                <option value="get all">Get all</option>
+                <option value="Pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="denied">Denied</option>
+              </select>
+            </div>
+
+            <div class="center-btn">
+              <button id="status-filter-btn">Submit</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-box">
+          <div class="reimbTable">
+            <!-- reimbursement table -->
+            <h2>Reimbursements Table</h2>
+
+            <div class="message">
+              <div class="errorMessage"></div>
+            </div>
+
+            <table id="reimbursements-table">
+              <thead>
+                <tr>
+                  <th>Reimbursement ID</th>
+                  <th>Amount ($)</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Receipt Image</th>
+                  <th>Status</th>
+                  <th>Submitted Time</th>
+                  <th>Resolved Time</th>
+                  <th>Author ID</th>
+                  <th>Resolver ID</th>
+                  <th>Update Status</th>
+                </tr>
+              </thead>
+
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../JavaScript/finanaceManagerHomepage.js"></script>
+  </body>
+</html>

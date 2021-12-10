@@ -1,0 +1,98 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.flexbox-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: 100%;
+
+  background-image: url("../images/spending1.jpg");
+  background-color: white;
+  background-size: cover;
+  opacity: 80%;
+}
+
+.flexbox-container > * {
+  padding: 0;
+  margin: 0;
+}
+
+.flexbox-item {
+  width: 500px;
+  margin: 10px;
+  flex-shrink: 0;
+  opacity: 100%;
+  border-radius: 25px;
+  border: 20px solid white;
+  background-color: white;
+}
+
+.info {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  align-content: stretch;
+}
+
+.title {
+  grid-area: 1 / 1 / 2 / 2;
+  text-align: center;
+}
+
+.login-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: "labels inputs";
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.labels {
+  grid-area: labels;
+  text-align: center;
+}
+
+.inputs {
+  grid-area: inputs;
+  text-align: left;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "errorMessage"
+    "button"
+    "signUp";
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.errorMessage {
+  grid-area: errorMessage;
+  text-align: center;
+}
+
+.button {
+  grid-area: button;
+  text-align: center;
+}
+
+.signUp {
+  grid-area: signUp;
+  text-align: center;
+}

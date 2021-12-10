@@ -1,0 +1,175 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.flexbox-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: 100%;
+
+  background-image: url("../images/finance.jpg");
+  background-color: white;
+  background-size: cover;
+  opacity: 80%;
+}
+
+.flexbox-container > * {
+  padding: 0;
+  margin: 0;
+}
+
+.flexbox-item {
+  width: 400px;
+  margin: 10px;
+  flex-shrink: 0;
+  opacity: 100%;
+  border-radius: 25px;
+  border: 20px solid white;
+  background-color: white;
+}
+
+.info {
+  display: grid;
+  grid-template-rows: 0.4fr 1.8fr 0.8fr;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  align-content: stretch;
+}
+
+.title {
+  grid-area: 1 / 1 / 2 / 2;
+  text-align: center;
+}
+
+.login-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: "labels inputs";
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.labels {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.9fr 1fr 1.2fr 0.9fr 1fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "firstName"
+    "lastName"
+    "username"
+    "password"
+    "email"
+    "userRole";
+  grid-area: labels;
+}
+
+.firstName {
+  grid-area: firstName;
+  text-align: center;
+}
+
+.lastName {
+  grid-area: lastName;
+  text-align: center;
+}
+
+.username {
+  grid-area: username;
+  text-align: center;
+}
+
+.password {
+  grid-area: password;
+  text-align: center;
+}
+
+.email {
+  grid-area: email;
+  text-align: center;
+}
+
+.userRole {
+  grid-area: userRole;
+  text-align: center;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.9fr 1fr 1.2fr 0.9fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "firstNameInput"
+    "lastNameInput"
+    "usernameInput"
+    "passwordInput"
+    "emailInput"
+    "userRoleInput";
+  grid-area: inputs;
+}
+
+.firstNameInput {
+  grid-area: firstNameInput;
+}
+
+.lastNameInput {
+  grid-area: lastNameInput;
+}
+
+.usernameInput {
+  grid-area: usernameInput;
+}
+
+.passwordInput {
+  grid-area: passwordInput;
+}
+
+.emailInput {
+  grid-area: emailInput;
+}
+
+.userRoleInput {
+  grid-area: userRoleInput;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "errorMessage"
+    "button"
+    "signin";
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.errorMessage {
+  grid-area: errorMessage;
+  text-align: center;
+}
+
+.button {
+  grid-area: button;
+  text-align: center;
+}
+
+.signin {
+  grid-area: signin;
+  text-align: center;
+}

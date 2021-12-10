@@ -14,7 +14,7 @@ public class SignInPage {
 	private WebDriver driver;
 	private WebDriverWait wdw; // explicit waits
 
-	@FindBy(xpath = "//*[text()='Expense Reimbursement System')]")
+	@FindBy(xpath = "//h1[contains(text(),'Expense Reimbursement System')]")
 	private WebElement heading;
 
 	@FindBy(xpath = "//input[@id='username-input']") // PageFactory annotation
