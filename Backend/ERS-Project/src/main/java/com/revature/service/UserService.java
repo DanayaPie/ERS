@@ -24,47 +24,61 @@ public class UserService {
 		super();
 		this.userDao = new UserDAO();
 	}
-	
+
 	public User getUserByUsernameAndPassword(String username, String password)
-			throws SQLException, FailedLoginException {
+			throws SQLException, FailedLoginException, NoSuchAlgorithmException {
 		logger.info("UserService.getUserByUsernameAndPassword() invoked");
 
-		String unhashedPassword = HashUtil.unhashPassword(password);
-		
-		User user = this.userDao.getUserByUsernameAndPassword(username, password);
+		User user = this.userDao.getUserByUsername(username);
 
-		if (user == null) {
+		if (user != null) {
+
+			// hashing username and password
+			String algorithm = "SHA-256";
+			byte[] salt = HashUtil.createSalt();
+
+			String hashedInputPassword = HashUtil.hashInputPassword(password.trim(), algorithm, salt);
+			
+			logger.info("hashedPassword {}", user.getPassword());
+			logger.info("hashedInputPasssword {}", hashedInputPassword);
+
+			Boolean isCorrectPassword = hashedInputPassword.equals(user.getPassword());
+
+			if (isCorrectPassword) {
+				return user;
+			} else {
+				throw new FailedLoginException("Incorrect username and/or password");
+			}
+		} else {
 			throw new FailedLoginException("Incorrect username and/or password");
 		}
-
-		return user;
 
 	}
 
 	public List<User> getUserByUsernameAndEmail(String username, String email) throws SQLException {
 		logger.info("UserService.getUserByUsernameAndEmail() invoked");
 
-		List<User> users = this.userDao.getUserByUsernameAndEmail(username, email);	
-		
+		List<User> users = this.userDao.getUserByUsernameAndEmail(username, email);
+
 		return users;
 	}
 
 	public User signUp(User user) throws InvalidParameterException, SQLException, NoSuchAlgorithmException {
 		logger.info("UserService.signUp() invoked");
-		
+
 		// hashing username and password
 		String algorithm = "SHA-256";
 		byte[] salt = HashUtil.createSalt();
-		
+
 		String hashedPassword = HashUtil.hashPassword(user.getPassword().trim(), algorithm, salt);
-		
+
 		user.setFirstName(user.getFirstName().trim());
 		user.setLastName(user.getLastName().trim());
 		user.setUsername(user.getUsername().trim());
 		user.setPassword(hashedPassword);
 		user.setEmail(user.getEmail().trim().toLowerCase());
 		user.setUserRole(user.getUserRole().trim());
-			
+
 		User addedUser = this.userDao.signUp(user);
 		return addedUser;
 	}

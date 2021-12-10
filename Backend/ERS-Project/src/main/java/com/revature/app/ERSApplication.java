@@ -36,16 +36,17 @@ public class ERSApplication {
 		// mapController() take in application and multiple controllers to map
 		// each endpoint to the 'app'
 		mapControllers(app, new AuthenticationController(), new ReimbursementController(), new UserController());
-		
+
 		ExceptionMapper mapper = new ExceptionMapper();
 		mapper.mapExceptions(app);
-		
+
 		app.start(8080);
 	}
 
-	// ... operator = zero or more String object may be passed as the argument(s)
+	// ... operator = zero or more String object may be passed as the
+	// argument(s)
 	public static void mapControllers(Javalin app, Controller... controllers) {
-		for (int i =0; i < controllers.length; i++) {
+		for (int i = 0; i < controllers.length; i++) {
 			controllers[i].mapEndpoints(app);
 		}
 	}
