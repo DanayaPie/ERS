@@ -17,13 +17,15 @@ import com.revature.utility.JDBCUtility;
 public class UserDAO {
 
 	private Logger logger = LoggerFactory.getLogger(UserDAO.class);
+	
+	String dbSchema = System.getenv("db.schema");
 
 	public User getUserByUsernameAndPassword(String username, String password) throws SQLException {
 		logger.info("UserDAO.getUserByUsernameAndPassword() invoked");
 
 		try (Connection con = JDBCUtility.getConnection()) {
 
-			String sql = "SELECT * FROM \"ERS_project\".users WHERE username = ? AND password = ?;";
+			String sql = "SELECT * FROM "+dbSchema+".users WHERE username = ? AND password = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, username);
@@ -63,7 +65,7 @@ public class UserDAO {
 		try (Connection con = JDBCUtility.getConnection()) {
 			List<User> users = new ArrayList<>();
 			
-			String sql = "Select username, email FROM \"ERS_project\".users WHERE username = ? OR email = ?";
+			String sql = "Select username, email FROM "+dbSchema+".users WHERE username = ? OR email = ?";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, signUpUsername);
@@ -91,7 +93,7 @@ public class UserDAO {
 
 		try (Connection con = JDBCUtility.getConnection()) {
 
-			String sql = "INSERT INTO \"ERS_project\".users (first_name, last_name, username, password, email, user_role)"
+			String sql = "INSERT INTO "+dbSchema+".users (first_name, last_name, username, password, email, user_role)"
 					+ "VALUES (?, ?, ?, ?, ?, ?);";
 
 			PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

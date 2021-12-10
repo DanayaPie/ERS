@@ -25,6 +25,8 @@ public class ReimbursementDAO {
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm");
 
+	String dbSchema = System.getenv("db.schema");
+
 	// getAllReimbursements
 	public List<Reimbursement> getAllReimbursements() throws SQLException, ParseException {
 		logger.info("ReimbursementDAO.getAllReimbursements() invoked");
@@ -32,7 +34,7 @@ public class ReimbursementDAO {
 		try (Connection con = JDBCUtility.getConnection()) {
 			List<Reimbursement> reimbursements = new ArrayList<>();
 
-			String sql = "SELECT * FROM \"ERS_project\".reimbursement ORDER BY reimb_id;";
+			String sql = "SELECT * FROM " + dbSchema + ".reimbursement ORDER BY reimb_id;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -52,11 +54,11 @@ public class ReimbursementDAO {
 				int resolverId = rs.getInt("resolver_id");
 
 				String submittedDateTimestamp = null;
-				
+
 				if (submittedTime != null) {
 					submittedDateTimestamp = dateFormat.format(new Date(submittedTime.getTime()));
 				}
-				
+
 				String resolvedDateTimestamp = null;
 				if (resolvedTime != null) {
 					resolvedDateTimestamp = dateFormat.format(new Date(resolvedTime.getTime()));
@@ -86,7 +88,7 @@ public class ReimbursementDAO {
 		try (Connection con = JDBCUtility.getConnection()) {
 			List<Reimbursement> reimbursements = new ArrayList<>();
 
-			String sql = "SELECT * FROM \"ERS_project\".reimbursement WHERE author_id = ? ORDER BY reimb_id;";
+			String sql = "SELECT * FROM " + dbSchema + ".reimbursement WHERE author_id = ? ORDER BY reimb_id;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, userId);
@@ -105,11 +107,11 @@ public class ReimbursementDAO {
 				int resolverId = rs.getInt("resolver_id");
 
 				String submittedDateTimestamp = null;
-				
+
 				if (submittedTime != null) {
 					submittedDateTimestamp = dateFormat.format(new Date(submittedTime.getTime()));
 				}
-				
+
 				String resolvedDateTimestamp = null;
 				if (resolvedTime != null) {
 					resolvedDateTimestamp = dateFormat.format(new Date(resolvedTime.getTime()));
@@ -128,7 +130,7 @@ public class ReimbursementDAO {
 
 				reimbursements.add(retrievedReimb);
 			}
-			
+
 			return reimbursements;
 		}
 	}
@@ -139,7 +141,7 @@ public class ReimbursementDAO {
 		try (Connection con = JDBCUtility.getConnection()) {
 			List<Reimbursement> reimbursements = new ArrayList<>();
 
-			String sql = "SELECT * FROM \"ERS_project\".reimbursement WHERE status = ? ORDER BY reimb_id;";
+			String sql = "SELECT * FROM " + dbSchema + ".reimbursement WHERE status = ? ORDER BY reimb_id;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, statusRequested);
@@ -158,11 +160,11 @@ public class ReimbursementDAO {
 				int resolverId = rs.getInt("resolver_id");
 
 				String submittedDateTimestamp = null;
-				
+
 				if (submittedTime != null) {
 					submittedDateTimestamp = dateFormat.format(new Date(submittedTime.getTime()));
 				}
-				
+
 				String resolvedDateTimestamp = null;
 				if (resolvedTime != null) {
 					resolvedDateTimestamp = dateFormat.format(new Date(resolvedTime.getTime()));
@@ -191,7 +193,7 @@ public class ReimbursementDAO {
 		logger.info("ReimbursementDAO.addReimbursement() invoked");
 
 		try (Connection con = JDBCUtility.getConnection()) {
-			String sql = "INSERT INTO \"ERS_project\".reimbursement (amount, status, "
+			String sql = "INSERT INTO " + dbSchema + ".reimbursement (amount, status, "
 					+ "	type, description, receipt, author_id) VALUES (?, ?, ?, ?, ?, ?);";
 
 			PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -221,19 +223,19 @@ public class ReimbursementDAO {
 
 				// generatedReimbId, amount, status, type, description, authorId
 				return reimb;
-				
+
 //				return new Reimbursement(generagedReimbId, amount, submittedTime, resolvedTime, status, type, description, authorId 
 			} else {
 				throw new SQLException("Generated key was not retrieved.");
 			}
 		}
 	}
-	
+
 	public Reimbursement getReimbByReimbId(int reimbursementId) throws SQLException {
 		logger.info("ReimbursementDAO.getReimbByReimbId() invoked");
 
 		try (Connection con = JDBCUtility.getConnection()) {
-			String sql = "SELECT * FROM \"ERS_project\".reimbursement WHERE reimb_id = ? ORDER BY reimb_id;";
+			String sql = "SELECT * FROM " + dbSchema + ".reimbursement WHERE reimb_id = ? ORDER BY reimb_id;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, reimbursementId);
@@ -252,18 +254,18 @@ public class ReimbursementDAO {
 				int resolverId = rs.getInt("resolver_id");
 
 				String submittedDateTimestamp = null;
-				
+
 				if (submittedTime != null) {
 					submittedDateTimestamp = dateFormat.format(new Date(submittedTime.getTime()));
 				}
-				
+
 				String resolvedDateTimestamp = null;
 				if (resolvedTime != null) {
 					resolvedDateTimestamp = dateFormat.format(new Date(resolvedTime.getTime()));
 				}
-				
+
 				Reimbursement retrievedReimb = new Reimbursement();
-				
+
 				retrievedReimb.setReimbId(reimbId);
 				retrievedReimb.setAmount(amount);
 				retrievedReimb.setSubmittedTime(submittedDateTimestamp);
@@ -273,7 +275,7 @@ public class ReimbursementDAO {
 				retrievedReimb.setDescription(description);
 				retrievedReimb.setAuthorId(authorId);
 				retrievedReimb.setResolverId(resolverId);
-				
+
 				return retrievedReimb;
 			}
 			return null;
@@ -284,7 +286,7 @@ public class ReimbursementDAO {
 		logger.info("ReimbursementDAO.getRecieptByReimbursementId() invoked");
 
 		try (Connection con = JDBCUtility.getConnection()) {
-			String sql = "SELECT receipt FROM \"ERS_project\".reimbursement WHERE reimb_id = ? ORDER BY reimb_id;";
+			String sql = "SELECT receipt FROM " + dbSchema + ".reimbursement WHERE reimb_id = ? ORDER BY reimb_id;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, reimbId);
@@ -304,7 +306,7 @@ public class ReimbursementDAO {
 		logger.info("ReimbursementDAO.updateReimbursementStatus() invoked");
 
 		try (Connection con = JDBCUtility.getConnection()) {
-			String sql = "UPDATE \"ERS_project\".reimbursement SET status = ?, resolver_id = ?, "
+			String sql = "UPDATE " + dbSchema + ".reimbursement SET status = ?, resolver_id = ?, "
 					+ "resolved_time = CURRENT_TIMESTAMP WHERE reimb_id = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -319,6 +321,5 @@ public class ReimbursementDAO {
 			}
 		}
 	}
-
 
 }

@@ -43,11 +43,10 @@ public class SubmitReimbTest {
 
 		this.driver.quit();
 	}
-	@When("I type in an amount of {string}")
-	public void i_type_in_an_amount_of(String string) {
-		this.employeeHomepage = new EmployeeHomepage(this.driver);
+	@When("I type in an amount of {int}")
+	public void i_type_in_an_amount_of(Integer int1) {
 		
-	    this.employeeHomepage.getAmountInput().sendKeys(string);
+	    this.employeeHomepage.getAmountInput().sendKeys(String.valueOf(int1));
 	}
 	@When("I select the type as {string}")
 	public void i_select_the_type_as(String string) {

@@ -1,4 +1,4 @@
-package com.revature.AuthorizationService;
+package com.revature.AuthorizationServiceTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
