@@ -13,9 +13,6 @@ import org.slf4j.LoggerFactory;
 
 public class SignUpPage {
 
-	private Logger logger = LoggerFactory.getLogger(SignUpPage.class);
-
-	
 	private WebDriver driver;
 	private WebDriverWait wdw; // explicit waits
 	

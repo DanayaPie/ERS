@@ -17,34 +17,22 @@ public class FinanceManagerHomepage {
 	// PageFactory annotation = @FindBy...
 	@FindBy(xpath = "//h1[contains(text(),'Welcome to Finance Manager Homepage')]")
 	private WebElement welcomeHeading;
-	
-	@FindBy(xpath="//button[@id='logout-btn']")
-	private WebElement signOutButton;
-	
-	@FindBy(xpath="//tbody/tr[1]/td[5]/button[1]")
-	private WebElement viewReceiptImage;
-	
-	@FindBy(xpath="//span[contains(text(),'×')]")
-	private WebElement closeViewReceiptImage;
-	
-	@FindBy(xpath="//input[@id='amount']")
-	private WebElement amountInput;
-	
-	@FindBy(xpath="//select[@id='type-dropdown']")
-	private WebElement typeInput;
-	
-	@FindBy(xpath="//input[@id='description']")
-	private WebElement descriptionInput;
 
-	@FindBy(xpath="//input[@id='receipt-file']")
-	private WebElement receiptImageInput;
-	
-	@FindBy(xpath="//p[@id='ptag']")
-	private WebElement errorMessage;
-	
-	@FindBy(xpath="//button[@id='submit-reimbursement-btn']")
-	private WebElement submitNewReimbButton;
-	
+	@FindBy(xpath = "//button[@id='logout-btn']")
+	private WebElement signOutButton;
+
+	@FindBy(xpath = "//select[@id='status-dropdown']")
+	private WebElement filterStatusInput;
+
+	@FindBy(xpath = "//button[@id='status-filter-btn']")
+	private WebElement filterStatusButton;
+
+	@FindBy(xpath = "//tbody//tr//td//select")
+	private WebElement upDateStatusInput;
+
+	@FindBy(xpath = "//tbody/tr/td[12]/button[1]")
+	private WebElement upDateStatusButton;
+
 	public FinanceManagerHomepage(WebDriver driver) {
 		this.driver = driver;
 
@@ -58,40 +46,24 @@ public class FinanceManagerHomepage {
 	public WebElement getWelcomeHeading() {
 		return this.wdw.until(ExpectedConditions.visibilityOf(welcomeHeading));
 	}
-	
+
 	public WebElement getSignOutButton() {
 		return this.signOutButton;
 	}
-	
-	public WebElement getViewReceiptImage() {
-		return this.viewReceiptImage;
+
+	public WebElement getFilterStatusInput() {
+		return this.filterStatusInput;
 	}
-	
-	public WebElement getCloseViewReceiptImage() {
-		return this.closeViewReceiptImage;
+
+	public WebElement getFilterStatusButton() {
+		return this.filterStatusButton;
 	}
-	
-	public WebElement getAmountInput() {
-		return this.amountInput;
+
+	public WebElement getUpDateStatusInput() {
+		return this.upDateStatusInput;
 	}
-	
-	public WebElement getTypeInput() {
-		return this.typeInput;
-	}
-	
-	public WebElement getDescriptionInput() {
-		return this.descriptionInput;
-	}
-	
-	public WebElement getReceiptImageInput() {
-		return this.receiptImageInput;
-	}
-	
-	public WebElement getSubmitNewReimbButton() {
-		return this.submitNewReimbButton;
-	}
-	
-	public WebElement getErrorMessage() {
-		return this.errorMessage;
+
+	public WebElement getUpDateStatusButton() {
+		return this.upDateStatusButton;
 	}
 }

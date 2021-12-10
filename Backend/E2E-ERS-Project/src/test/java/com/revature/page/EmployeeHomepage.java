@@ -14,55 +14,85 @@ public class EmployeeHomepage {
 	private WebDriver driver;
 	private WebDriverWait wdw; // explicit waits
 
-	@FindBy(xpath = "//*[text()='Welcome to Employee Homepage']") // PageFactory annotation
+	@FindBy(xpath = "//h1[contains(text(),'Welcome to Employee Homepage')]") // PageFactory
+																				// annotation
 	private WebElement welcomeHeading;
-	
-	@FindBy(xpath="//button[@id='logout-btn']")
+
+	@FindBy(xpath = "//button[@id='logout-btn']")
 	private WebElement signOutButton;
-	
-	@FindBy(xpath="//select[@id='status-dropdown']")
-	private WebElement filterStatusInput;
-	
-	@FindBy(xpath="//button[@id='status-filter-btn']")
-	private WebElement filterStatusButton;
-	
-	@FindBy(xpath="//tbody//tr//td//select")
-	private WebElement upDateStatusInput;
-	
-	@FindBy (xpath="//tbody/tr/td[12]/button[1]")
-	private WebElement upDateStatusButton;
+
+	@FindBy(xpath = "//tbody/tr[1]/td[5]/button[1]")
+	private WebElement viewReceiptImage;
+
+	@FindBy(xpath = "//span[contains(text(),'×')]")
+	private WebElement closeViewReceiptImage;
+
+	@FindBy(xpath = "//input[@id='amount']")
+	private WebElement amountInput;
+
+	@FindBy(xpath = "//select[@id='type-dropdown']")
+	private WebElement typeInput;
+
+	@FindBy(xpath = "//input[@id='description']")
+	private WebElement descriptionInput;
+
+	@FindBy(xpath = "//input[@id='receipt-file']")
+	private WebElement receiptImageInput;
+
+	@FindBy(xpath = "//p[@id='ptag']")
+	private WebElement errorMessage;
+
+	@FindBy(xpath = "//button[@id='submit-reimbursement-btn']")
+	private WebElement submitNewReimbButton;
 
 	public EmployeeHomepage(WebDriver driver) {
 		this.driver = driver;
 
 		// wait for a max of 15 sec before throwing an exception
 		this.wdw = new WebDriverWait(driver, Duration.ofSeconds(15));
-		
+
 		// PageFactor initialization
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	public WebElement getWelcomeHeading() {
 		return this.wdw.until(ExpectedConditions.visibilityOf(welcomeHeading));
 	}
-	
+
 	public WebElement getSignOutButton() {
 		return this.signOutButton;
 	}
-	
-	public WebElement getFilterStatusInput() {
-		return this.filterStatusInput;
+
+	public WebElement getViewReceiptImage() {
+		return this.viewReceiptImage;
 	}
-	
-	public WebElement getFilterStatusButton() {
-		return this.filterStatusButton;
+
+	public WebElement getCloseViewReceiptImage() {
+		return this.closeViewReceiptImage;
 	}
-	
-	public WebElement getUpDateStatusInput() {
-		return this.upDateStatusInput;
+
+	public WebElement getAmountInput() {
+		return this.amountInput;
 	}
-	
-	public WebElement getUpDateStatusButton() {
-		return this.upDateStatusButton;
+
+	public WebElement getTypeInput() {
+		return this.typeInput;
 	}
+
+	public WebElement getDescriptionInput() {
+		return this.descriptionInput;
+	}
+
+	public WebElement getReceiptImageInput() {
+		return this.receiptImageInput;
+	}
+
+	public WebElement getSubmitNewReimbButton() {
+		return this.submitNewReimbButton;
+	}
+
+	public WebElement getErrorMessage() {
+		return this.errorMessage;
+	}
+
 }

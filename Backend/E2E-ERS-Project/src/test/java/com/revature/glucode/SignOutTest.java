@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import com.revature.page.EmployeeHomepage;
 import com.revature.page.FinanceManagerHomepage;
 import com.revature.page.SignInPage;
-import com.revature.page.SignUpPage;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,7 +18,6 @@ public class SignOutTest {
 
 	private WebDriver driver;
 	private SignInPage signInPage;
-	private SignUpPage signUpPage;
 	private EmployeeHomepage employeeHomepage;
 	private FinanceManagerHomepage financeManagerHomepage;
 
@@ -41,8 +39,8 @@ public class SignOutTest {
 		this.driver.quit();
 	}
 	
-	@Given("that I am log in as finance manager")
-	public void that_i_am_log_in_as_finance_manager() {
+	@Given("I am log in as finance manager")
+	public void i_am_log_in_as_finance_manager() {
 		
 		// Selenium set up
 		System.setProperty("webdriver.chrome.driver", "C:\\webdrivers/chromedriver.exe");
@@ -59,6 +57,25 @@ public class SignOutTest {
 		String expectedWelcomeHeadingText = "Welcome to Finance Manager Homepage";
 
 		Assertions.assertEquals(expectedWelcomeHeadingText, this.financeManagerHomepage.getWelcomeHeading().getText());
+	}
+	
+	@Given("I am log in as employee")
+	public void i_am_log_in_as_employee() {
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\webdrivers/chromedriver.exe");
+		this.driver = new ChromeDriver();
+		this.driver.get("http://127.0.0.1:5500/");
+		this.signInPage = new SignInPage(driver);
+		
+	    this.signInPage.getUsernameInput().sendKeys("JaneD");
+	    this.signInPage.getPasswordInput().sendKeys("Jane123");
+	    this.signInPage.getLoginButton().click();
+	    
+	    this.employeeHomepage = new EmployeeHomepage(this.driver);
+
+		String expectedWelcomeHeadingText = "Welcome to Employee Homepage";
+
+		Assertions.assertEquals(expectedWelcomeHeadingText, this.employeeHomepage.getWelcomeHeading().getText());
 	}
 	
 	@When("I click on sign out button")
