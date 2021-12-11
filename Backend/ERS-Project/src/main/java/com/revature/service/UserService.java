@@ -33,14 +33,16 @@ public class UserService {
 
 		if (user != null) {
 
-			// hashing username and password
+			// hashing password
 			String algorithm = "SHA-256";
-			byte[] salt = HashUtil.createSalt();
+			String hashedInputPassword = HashUtil.hashInputPassword(password.trim(), algorithm);
 
-			String hashedInputPassword = HashUtil.hashInputPassword(password.trim(), algorithm, salt);
-			
-			logger.info("hashedPassword {}", user.getPassword());
-			logger.info("hashedInputPasssword {}", hashedInputPassword);
+//			// salt = cann't loging because can't match the password
+//			byte[] salt = HashUtil.createSalt();
+//			String hashedInputPassword = HashUtil.hashInputPassword(password.trim(), algorithm, salt);
+
+			logger.debug("hashedPassword {}", user.getPassword());
+			logger.debug("hashedInputPasssword {}", hashedInputPassword);
 
 			Boolean isCorrectPassword = hashedInputPassword.equals(user.getPassword());
 
@@ -66,11 +68,13 @@ public class UserService {
 	public User signUp(User user) throws InvalidParameterException, SQLException, NoSuchAlgorithmException {
 		logger.info("UserService.signUp() invoked");
 
-		// hashing username and password
+		// hashing password
 		String algorithm = "SHA-256";
-		byte[] salt = HashUtil.createSalt();
+		String hashedPassword = HashUtil.hashPassword(user.getPassword().trim(), algorithm);
 
-		String hashedPassword = HashUtil.hashPassword(user.getPassword().trim(), algorithm, salt);
+//		// salt = cann't loging because can't match the password
+//		byte[] salt = HashUtil.createSalt();
+//		String hashedPassword = HashUtil.hashPassword(user.getPassword().trim(), algorithm, salt);
 
 		user.setFirstName(user.getFirstName().trim());
 		user.setLastName(user.getLastName().trim());

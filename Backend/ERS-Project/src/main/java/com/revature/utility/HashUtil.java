@@ -21,36 +21,58 @@ public class HashUtil {
 		return new String(hexChars);
 	}
 
-	// create salt
-	public static byte[] createSalt() {
-
-		byte[] bytes = new byte[20];
-		SecureRandom random = new SecureRandom();
-		random.nextBytes(bytes);
-
-		return bytes;
-	}
-
-	// hash password
-	public static String hashPassword(String password, String algorithm, byte[] salt) throws NoSuchAlgorithmException {
+	// hash + salt password
+	public static String hashPassword(String password, String algorithm) throws NoSuchAlgorithmException {
 
 		MessageDigest digest = MessageDigest.getInstance(algorithm);
 		digest.reset();
-		digest.update(salt);
 		byte[] hash = digest.digest(password.getBytes());
 
 		return bytesToStringHex(hash);
 	}
 
-	public static String hashInputPassword(String inputPassword, String algorithm, byte[] salt)
-			throws NoSuchAlgorithmException {
+	public static String hashInputPassword(String inputPassword, String algorithm) throws NoSuchAlgorithmException {
 
 		MessageDigest digest = MessageDigest.getInstance(algorithm);
 		digest.reset();
-		digest.update(salt);
 		byte[] hash = digest.digest(inputPassword.getBytes());
 
 		return bytesToStringHex(hash);
 	}
+
+	/*-
+	 *  hash + salt password
+	 */
+	// create salt
+//	public static byte[] createSalt() {
+//
+//		byte[] bytes = new byte[20];
+//		SecureRandom random = new SecureRandom();
+//		random.nextBytes(bytes);
+//
+//		return bytes;
+//	}
+//
+//	// hash + salt password
+//	public static String hashPassword(String password, String algorithm, byte[] salt) throws NoSuchAlgorithmException {
+//
+//		MessageDigest digest = MessageDigest.getInstance(algorithm);
+//		digest.reset();
+//		digest.update(salt);
+//		byte[] hash = digest.digest(password.getBytes());
+//
+//		return bytesToStringHex(hash);
+//	}
+//
+//	public static String hashInputPassword(String inputPassword, String algorithm, byte[] salt)
+//			throws NoSuchAlgorithmException {
+//
+//		MessageDigest digest = MessageDigest.getInstance(algorithm);
+//		digest.reset();
+//		digest.update(salt);
+//		byte[] hash = digest.digest(inputPassword.getBytes());
+//
+//		return bytesToStringHex(hash);
+//	}
 
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.security.auth.login.FailedLoginException;
@@ -21,6 +22,13 @@ import com.revature.service.UserService;
 import com.revature.utility.JDBCUtility;
 
 import constant.TableConstant;
+
+/*-
+ * 	H2 Unit test
+ * 
+ * 	required JUnit 4 and run via Java
+ * 	---> working on it
+ */
 
 public class getUserByUsernameAndPasswordTest {
 
@@ -45,7 +53,7 @@ public class getUserByUsernameAndPasswordTest {
 	}
 
 //	@Test
-//	public void getUserByUsernameAndPasswordTest_Positive() throws SQLException, FailedLoginException {
+//	public void getUserByUsernameAndPasswordTest_Positive() throws SQLException, FailedLoginException, NoSuchAlgorithmException {
 //		User user = userSerive.getUserByUsernameAndPassword("JohnD", "John123");
 //		assertNotEquals(user, null);
 //	}
@@ -54,4 +62,5 @@ public class getUserByUsernameAndPasswordTest {
 //	public void getUserWithInvalidUsernameAndPassowrdTest_Negative() throws FailedLoginException, SQLException {
 //		User user = userSerive.getUserByUsernameAndPassword("J123", "J123");
 //		exceptionRule.expect(NumberFormatException.class);
+//	}
 }
