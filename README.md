@@ -34,9 +34,12 @@ To-do list:
 
 > Log in to access or sign up if does not have an account
    ![image](https://user-images.githubusercontent.com/92035671/145692621-64977639-a7dc-4248-b3c0-9554cc29b8f8.png)
+   
 > Sign up by entering all the information required
    ![image](https://user-images.githubusercontent.com/92035671/145692636-12f53565-0f8e-4d59-aa0b-04c45a6bc3be.png)
+   
 > Employee Homepage sample
    ![image](https://user-images.githubusercontent.com/92035671/145692651-f061ba09-39db-412c-a8d4-d6772a47ea30.png)
+
 > Finance Manager Homepage sample
    ![image](https://user-images.githubusercontent.com/92035671/145692667-311f58aa-8ddc-48f7-974f-ab59f218071d.png)
