@@ -1,4 +1,4 @@
-# Expense Reimbursement Project - Project One
+# Expense Reimbursement System - Project One
 
 ## Project Description
 
