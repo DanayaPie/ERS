@@ -2,7 +2,7 @@
 
 ## Project Description
 
-ERS API is a full-stack application where employees can sign up and submit reimbursements to be reviewed by the finance manager. The finance manager can also sign up, view each reimbursement information, and approve or deny based on the company guideline. When a user signs up, their password will be hash and stored in the database for security.
+Expense Reimbursement System (ERS) is a full-stack application where employees can sign up and submit reimbursements to be reviewed by the finance manager. The finance manager can also sign up, view each reimbursement information, and approve or deny based on the company guideline. When a user signs up, their password will be hash and stored in the database for security.
 
 ## Technologies Used
 
@@ -30,6 +30,10 @@ To-do list:
 * More E2E tests and Unit test
 * Create frontend to allow finance manager to submit reimbursement but cannot approve or denired his/her own reimbursement
 
+## Getting Started
+
+git clone ```https://github.com/DanayaPie/ERS-Project-One.git```
+
 ## Usage
 
 > Log in to access or sign up if does not have an account
@@ -47,3 +51,7 @@ To-do list:
 > Finance Manager Homepage sample
 > 
 > ![image](https://user-images.githubusercontent.com/92035671/145692667-311f58aa-8ddc-48f7-974f-ab59f218071d.png)
+
+## Contributors
+
+* Danaya Chusuwan
