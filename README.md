@@ -32,7 +32,7 @@ To-do list:
 
 ## Getting Started
 
-git clone ```https://github.com/DanayaPie/ERS-Project-One.git```
+git clone ```https://github.com/DanayaPie/ERS.git```
 
 ## Usage
 
