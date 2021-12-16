@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS reimbursement;
+DROP TABLE IF EXISTS reimbursement; 
 
 CREATE TABLE reimbursement (
 	reimb_id SERIAL PRIMARY KEY,
