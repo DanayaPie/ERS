@@ -37,8 +37,8 @@ git clone ```https://github.com/DanayaPie/ERS.git```
 ## Usage
 
 > Log in to access or sign up if does not have an account
-> 
-> ![image](https://user-images.githubusercontent.com/92035671/145692621-64977639-a7dc-4248-b3c0-9554cc29b8f8.png)
+
+<img src="https://user-images.githubusercontent.com/92035671/145692621-64977639-a7dc-4248-b3c0-9554cc29b8f8.png" height="100px">
    
 > Sign up by entering all the information required
 > 
