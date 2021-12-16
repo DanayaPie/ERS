@@ -9,8 +9,10 @@ Expense Reimbursement System (ERS) is a full-stack application where employees c
 * Java
 * Javalin
 * Selenium
-* JUnit 5 (Juniper) and JUnit 4
+* H2
 * Cucumber
+* JUnit 5 (Juniper) and JUnit 4
+* Mockito
 * HTML
 * CSS
 * JavaScript
