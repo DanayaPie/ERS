@@ -1,4 +1,4 @@
-# Expense Reimbursement System - Project One
+# Expense Reimbursement System (ERS)
 
 ## Project Description
 
