@@ -21,7 +21,7 @@ INSERT INTO users (
 
 -- ====== QUERYING 
 
-SELECT *
+SELECT * 
 FROM "ERS_project".users;
 
 -- 

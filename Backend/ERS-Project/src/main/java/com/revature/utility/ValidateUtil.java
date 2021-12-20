@@ -22,20 +22,19 @@ import io.javalin.http.UploadedFile;
 public class ValidateUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
-	
+
 	private static UserService userService = new UserService();
 
 	static List<String> allowedFileTypes = Arrays.asList("image/jpeg", "image/png", "image/gif");
 	static List<String> reimbType = Arrays.asList("Lodging", "Travel", "Food", "Other");
 	static List<String> userRoleList = Arrays.asList("employee", "finance manager");
-	
+
 	/*-
 	 * 	'static' method = does not have to instantiate object to call the method
 	 * 	
 	 * 	className.methodName = call the method
 	 */
-	
-	
+
 	public static void verifyUsernameAndPassword(String username, String password) throws FailedLoginException {
 		logger.info("ValidteUtil.verifyUsernameAndPassword() invoked");
 
@@ -132,25 +131,25 @@ public class ValidateUtil {
 		 */
 		boolean existingBoolean = false;
 		StringBuilder existingString = new StringBuilder();
-		
+
 		List<User> users = userService.getUserByUsernameAndEmail(user.getUsername(), user.getEmail());
-			
+
 		for (User userElement : users) {
-		
+
 			logger.debug("signUp username email {} {}", user.getUsername(), user.getEmail());
 			logger.debug("database username email {} {}", userElement.getUsername(), userElement.getEmail());
-			
-			if (StringUtils.equalsAnyIgnoreCase(userElement.getUsername(),user.getUsername())) {
+
+			if (StringUtils.equalsAnyIgnoreCase(userElement.getUsername(), user.getUsername())) {
 				existingString.append("Username");
 				existingBoolean = true;
 			}
-			if (StringUtils.equalsAnyIgnoreCase(userElement.getEmail(),user.getEmail())) {
+			if (StringUtils.equalsAnyIgnoreCase(userElement.getEmail(), user.getEmail())) {
 				if (existingBoolean) {
 					existingString.append(", email");
 					existingBoolean = true;
 				} else {
-					userErrorString.append("Email");
-					userErrorBoolean = true;
+					existingString.append("Email");
+					existingBoolean = true;
 				}
 			}
 			if (existingBoolean) {
@@ -158,13 +157,13 @@ public class ValidateUtil {
 				throw new InvalidParameterException(existingString.toString());
 			}
 		}
-		
+
 		/*-
 		 *  limit username and password length
 		 */
 		boolean limitUsernamePasswordBoolean = false;
 		StringBuilder limitUsernamePasswordString = new StringBuilder();
-		
+
 		if (user.getUsername().length() > 20) {
 			limitUsernamePasswordString.append("Username");
 			limitUsernamePasswordBoolean = true;
@@ -200,7 +199,7 @@ public class ValidateUtil {
 			errorBoolean = true;
 
 		}
-		
+
 		if (StringUtils.isBlank(type)) {
 			if (errorBoolean) {
 				userErrorString.append(", type");
@@ -210,7 +209,7 @@ public class ValidateUtil {
 				errorBoolean = true;
 			}
 		}
-		
+
 		if (StringUtils.isBlank(description)) {
 			if (errorBoolean) {
 				userErrorString.append(", description");
@@ -220,7 +219,7 @@ public class ValidateUtil {
 				errorBoolean = true;
 			}
 		}
-		
+
 		if (file == null) {
 			if (errorBoolean) {
 				userErrorString.append(", receipt");
@@ -244,16 +243,15 @@ public class ValidateUtil {
 
 		// amount
 		try {
-			
+
 			Double amountReimb = Double.parseDouble(amount);
-			
+
 			if (amountReimb == 0 || amountReimb < 0) {
 				throw new InvalidParameterException("Amount cannot be equal to or less than 0.");
 			}
 		} catch (NumberFormatException e) {
 			throw new InvalidParameterException("Amount must be a number.");
 		}
-
 
 		// capitalized type
 		if (type != null) {
@@ -276,6 +274,5 @@ public class ValidateUtil {
 					"Receipt image must be uploaded and can only be PNG, JPEG, or GIF file.");
 		}
 	}
-
 
 }

@@ -21,7 +21,7 @@ public class HashUtil {
 		return new String(hexChars);
 	}
 
-	// hash + salt password
+	// hash
 	public static String hashPassword(String password, String algorithm) throws NoSuchAlgorithmException {
 
 		MessageDigest digest = MessageDigest.getInstance(algorithm);
