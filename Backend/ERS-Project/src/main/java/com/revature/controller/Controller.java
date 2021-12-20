@@ -4,5 +4,5 @@ import io.javalin.Javalin;
 
 public interface Controller {
 
-	void mapEndpoints(Javalin app);
+	void mapEndpoints(Javalin app); 
 }
